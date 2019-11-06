@@ -31,3 +31,19 @@ a > .navbar-brand {
 * {
     font-family: 'Dancing Script', cursive;
 }
+
+.navbar-inverse {
+    background-color: #82817A;
+    border-color: #82817A;
+}
+    .navbar-inverse .navbar-nav > li > a {
+        color: #FFC896;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #FFC896;
+    }
+
+body {
+    background-color: #99D0F2;
+}
