@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201911061844155_InitialCreate.Designer.cs">
       <DependentUpon>201911061844155_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911081454269_AddSeccion.cs" />
+    <Compile Include="Migrations\201911081454269_AddSeccion.Designer.cs">
+      <DependentUpon>201911081454269_AddSeccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GroupOfStudents.cs" />
@@ -271,6 +275,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201911061844155_InitialCreate.resx">
       <DependentUpon>201911061844155_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911081454269_AddSeccion.resx">
+      <DependentUpon>201911081454269_AddSeccion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
