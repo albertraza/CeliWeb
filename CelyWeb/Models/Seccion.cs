@@ -27,6 +27,8 @@ namespace CelyWeb.Models
         public bool IsActive {get; set;  }
 
 
+
+
         public ISeccion GetSeccion(int id)
         {
             throw new NotImplementedException();
