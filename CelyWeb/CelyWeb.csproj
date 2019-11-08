@@ -186,6 +186,14 @@
     <Compile Include="Migrations\201911081456014_AddPaymentTypes.Designer.cs">
       <DependentUpon>201911081456014_AddPaymentTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911081458527_AddGroupOfStudents.cs" />
+    <Compile Include="Migrations\201911081458527_AddGroupOfStudents.Designer.cs">
+      <DependentUpon>201911081458527_AddGroupOfStudents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911081500203_AddStudents.cs" />
+    <Compile Include="Migrations\201911081500203_AddStudents.Designer.cs">
+      <DependentUpon>201911081500203_AddStudents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GroupOfStudents.cs" />
@@ -285,6 +293,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911081456014_AddPaymentTypes.resx">
       <DependentUpon>201911081456014_AddPaymentTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911081458527_AddGroupOfStudents.resx">
+      <DependentUpon>201911081458527_AddGroupOfStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911081500203_AddStudents.resx">
+      <DependentUpon>201911081500203_AddStudents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

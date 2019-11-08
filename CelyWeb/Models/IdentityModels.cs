@@ -22,6 +22,8 @@ namespace CelyWeb.Models
     {
         public DbSet<Seccion> Seccions { get; set; }
         public DbSet<PaymentTypes> PaymentTypes { get; set; }
+        public DbSet<GroupOfStudents> GroupOfStudents { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
