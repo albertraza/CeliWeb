@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201911081454269_AddSeccion.Designer.cs">
       <DependentUpon>201911081454269_AddSeccion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911081456014_AddPaymentTypes.cs" />
+    <Compile Include="Migrations\201911081456014_AddPaymentTypes.Designer.cs">
+      <DependentUpon>201911081456014_AddPaymentTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GroupOfStudents.cs" />
@@ -278,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911081454269_AddSeccion.resx">
       <DependentUpon>201911081454269_AddSeccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911081456014_AddPaymentTypes.resx">
+      <DependentUpon>201911081456014_AddPaymentTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

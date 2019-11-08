@@ -21,6 +21,7 @@ namespace CelyWeb.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Seccion> Seccions { get; set; }
+        public DbSet<PaymentTypes> PaymentTypes { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
