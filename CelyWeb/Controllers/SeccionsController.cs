@@ -13,19 +13,21 @@ namespace CelyWeb.Controllers
         // GET: Seccions
         public ActionResult Index()
         {
-            return View();
+            var viewModel = new SeccionsViewModel { Seccions = new Seccion().GetSeccions() };
+
+            return View(viewModel);
         }
 
         [HttpPost]
         public ActionResult Save(SeccionsViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View(viewModel);
+                return View("SeccionForm", viewModel);
 
             viewModel.Seccion.DateAdded = DateTime.Today;
             new Seccion().Register(viewModel.Seccion);
 
-            return View("Index", viewModel);
+            return View("Index");
         }
 
         public ActionResult New()

@@ -44,9 +44,10 @@ namespace CelyWeb.Models
             throw new NotImplementedException();
         }
 
-        public List<ISeccion> GetSeccions()
-        {
-            throw new NotImplementedException();
+        public List<Seccion> GetSeccions()
+        { 
+            var seccions = _context.Seccions.ToList();
+            return seccions;
         }
 
         public ISeccion Register(ISeccion seccion)

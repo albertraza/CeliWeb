@@ -5,3 +5,21 @@
 }
 
 <h2>Seccions</h2>
+
+<table class="table table-bordered table-bordered">
+    <thead>
+       <tr>
+           <th>Nivel</th>
+           <th>Aula</th>
+       </tr>
+    </thead>
+    <tbody>
+        @foreach(var seccion in Model.Seccions)
+        {
+            <tr>
+                <td>@seccion.Nivel</td>
+                <td>@seccion.Aula</td>
+            </tr>
+        }
+    </tbody>
+</table>

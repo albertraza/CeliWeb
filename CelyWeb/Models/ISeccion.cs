@@ -30,7 +30,6 @@ namespace CelyWeb.Models
 
         ISeccion Register(ISeccion seccion);
         ISeccion Update(ISeccion seccion);
-        List<ISeccion> GetSeccions();
         ISeccion GetSeccion(int id);
     }
 }
