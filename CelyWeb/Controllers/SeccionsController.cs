@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CelyWeb.Models;
+using CelyWeb.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,9 +16,16 @@ namespace CelyWeb.Controllers
             return View();
         }
 
-        public ActionResult Save()
+        [HttpPost]
+        public ActionResult Save(SeccionsViewModel viewModel)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View(viewModel);
+
+            viewModel.Seccion.DateAdded = DateTime.Today;
+            new Seccion().Register(viewModel.Seccion);
+
+            return View("Index", viewModel);
         }
     }
 }
