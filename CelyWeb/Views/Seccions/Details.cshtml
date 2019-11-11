@@ -1,0 +1,33 @@
+﻿@model CelyWeb.ViewModels.SeccionsViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles: @Model.Seccion.Nivel</h2>
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h3>Aula</h3>
+        <p>@Model.Seccion.Aula</p>
+        <h3>Fechas</h3>
+        <ul>
+            <li><b>Fecha de Inicio: </b>@Model.Seccion.StartDate.ToShortDateString()</li>
+            <li><b>Fecha de Registro: </b>@Model.Seccion.DateAdded.ToShortDateString()</li>
+        </ul>
+        <h3>Detalles</h3>
+        <ul>
+            <li><b>Limite Estudiantil: </b>@Model.Seccion.StudentLimit</li>
+            <li>
+                @if (Model.Seccion.IsActive)
+                {<b>El Nivel Esta Activo</b> }
+                else
+                { <b>El Nivel No Esta Activo</b>}
+        </li>
+    </ul>
+    <button class="btn btn-default">Modificar</button>
+    <button class="btn btn-default">Eliminar</button>
+    </div>
+    <div class="col-md-4"></div>
+</div>

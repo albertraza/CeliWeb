@@ -34,5 +34,12 @@ namespace CelyWeb.Controllers
         {
             return View("SeccionForm");
         }
+
+        public ActionResult Details(int id)
+        {
+            var viewModel = new SeccionsViewModel { Seccion = (Seccion) new Seccion().GetSeccion(id) };
+
+            return View(viewModel);
+        }
     }
 }

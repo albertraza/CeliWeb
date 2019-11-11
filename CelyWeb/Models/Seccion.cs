@@ -41,7 +41,7 @@ namespace CelyWeb.Models
 
         public ISeccion GetSeccion(int id)
         {
-            throw new NotImplementedException();
+            return _context.Seccions.Single(s => s.Id == id);
         }
 
         public List<Seccion> GetSeccions()

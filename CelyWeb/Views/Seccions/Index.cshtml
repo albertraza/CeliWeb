@@ -17,7 +17,7 @@
         @foreach(var seccion in Model.Seccions)
         {
             <tr>
-                <td>@seccion.Nivel</td>
+                <td><a class="btn btn-link" href="/Seccions/Details/@seccion.Id">@seccion.Nivel</a></td>
                 <td>@seccion.Aula</td>
             </tr>
         }
