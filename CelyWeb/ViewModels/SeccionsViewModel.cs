@@ -9,5 +9,7 @@ namespace CelyWeb.ViewModels
     public class SeccionsViewModel
     {
         public Seccion Seccion { get; set; }
+
+        public List<Seccion> Seccions { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model CelyWeb.ViewModels.SeccionsViewModel
+@{
+    ViewBag.Title = "SeccionForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Seccion</h2>
+
+@using (Html.BeginForm("Save", "Seccions"))
+{
+    @Html.ValidationSummary();
+    <div class="form-group">
+        @Html.LabelFor(m => m.Seccion.Nivel)
+        @Html.TextBoxFor(m => m.Seccion.Nivel, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Seccion.Nivel)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Seccion.Aula)
+        @Html.TextBoxFor(m => m.Seccion.Aula, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Seccion.StartDate)
+        @Html.TextBoxFor(m => m.Seccion.StartDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Seccion.StartDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Seccion.StudentLimit)
+        @Html.TextBoxFor(m => m.Seccion.StudentLimit, new { @class = "form-control" })
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Seccion.IsActive) Esta Activo?
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

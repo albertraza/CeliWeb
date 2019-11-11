@@ -27,5 +27,10 @@ namespace CelyWeb.Controllers
 
             return View("Index", viewModel);
         }
+
+        public ActionResult New()
+        {
+            return View("SeccionForm");
+        }
     }
 }
