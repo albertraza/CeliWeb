@@ -28,7 +28,7 @@ namespace CelyWeb.Controllers
             {
                 new Seccion().Register(viewModel.Seccion);
 
-                return View("Index");
+                return View("Index", new SeccionsViewModel { Seccions = new Seccion().GetSeccions() });
             }
             else
             {
@@ -39,7 +39,7 @@ namespace CelyWeb.Controllers
 
         public ActionResult New()
         {
-            return View("SeccionForm");
+            return View("SeccionForm", new SeccionsViewModel { Seccion = new Seccion()});
         }
 
         public ActionResult Details(int id)
