@@ -32,6 +32,7 @@
             @Html.CheckBoxFor(m => m.Seccion.IsActive) Esta Activo?
         </label>
     </div>
+    @Html.HiddenFor(m => m.Seccion.Id);
     <button type="submit" class="btn btn-primary">Guardar</button>
 }
 

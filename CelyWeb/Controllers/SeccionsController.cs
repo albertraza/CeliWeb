@@ -24,10 +24,17 @@ namespace CelyWeb.Controllers
             if (!ModelState.IsValid)
                 return View("SeccionForm", viewModel);
 
-            viewModel.Seccion.DateAdded = DateTime.Today;
-            new Seccion().Register(viewModel.Seccion);
+            if (viewModel.Seccion.Id == 0)
+            {
+                new Seccion().Register(viewModel.Seccion);
 
-            return View("Index");
+                return View("Index");
+            }
+            else
+            {
+                viewModel.Seccion = (Seccion) new Seccion().Update(viewModel.Seccion);
+                return View("Details", viewModel);
+            }
         }
 
         public ActionResult New()
@@ -40,6 +47,11 @@ namespace CelyWeb.Controllers
             var viewModel = new SeccionsViewModel { Seccion = (Seccion) new Seccion().GetSeccion(id) };
 
             return View(viewModel);
+        }
+
+        public ActionResult Modify(int id)
+        {
+            return View("SeccionForm", new SeccionsViewModel { Seccion = (Seccion) new Seccion().GetSeccion(id) });
         }
     }
 }

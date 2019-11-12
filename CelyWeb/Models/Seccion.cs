@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -52,6 +53,8 @@ namespace CelyWeb.Models
 
         public ISeccion Register(ISeccion seccion)
         {
+            seccion.DateAdded = DateTime.Today;
+
             _context.Seccions.Add((Seccion)seccion);
             _context.SaveChanges();
 
@@ -60,7 +63,16 @@ namespace CelyWeb.Models
 
         public ISeccion Update(ISeccion seccion)
         {
-            throw new NotImplementedException();
+            var seccionInDB = _context.Seccions.Single(s => s.Id == seccion.Id);
+
+            seccionInDB.IsActive = seccion.IsActive;
+            seccionInDB.Aula = seccion.Aula;
+            seccionInDB.Nivel = seccion.Nivel;
+            seccionInDB.StudentLimit = seccion.StudentLimit;
+
+            _context.SaveChanges();
+
+            return seccion;
         }
     }
 }
