@@ -8,20 +8,29 @@ namespace CelyWeb.Models
 {
     public class PaymentTypes : IPaymentTypes
     {
+        private ApplicationDbContext _context;
+
         public int Id { get; set; }
 
         [Required]
         public DateTime DateAdded { get; set;}
 
         [Required]
+        [Display(Name = "Nombre del tipo de pago")]
         public string Type {get; set; }
 
         [Required]
+        [Display(Name ="Cantidad a Pagar")]
         public double Amount {get; set; }
 
         [Required]
+        [Display(Name ="Cantidad de Dias para pagar")]
         public int DaysToPay {get; set; }
 
+        public PaymentTypes()
+        {
+            _context = new ApplicationDbContext();
+        }
 
         public IPaymentTypes GetPaymentType(int id)
         {
@@ -30,7 +39,12 @@ namespace CelyWeb.Models
 
         public IPaymentTypes Register(IPaymentTypes paymentType)
         {
-            throw new NotImplementedException();
+            paymentType.DateAdded = DateTime.Today;
+
+            _context.PaymentTypes.Add((PaymentTypes)paymentType);
+            _context.SaveChanges();
+
+            return paymentType;
         }
     }
 }
