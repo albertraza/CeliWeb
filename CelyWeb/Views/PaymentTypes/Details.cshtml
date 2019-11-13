@@ -1,0 +1,26 @@
+﻿@model CelyWeb.ViewModels.PaymentTypesViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+        <h3>Tipo de Pago</h3>
+        <p>@Model.PaymentType.Type</p>
+        <h3>Detalles</h3>
+        <ul>
+            <li><b>Fecha Creado: </b>@Model.PaymentType.DateAdded.ToShortDateString()</li>
+            <li><b>Cantidad de Pago: </b>@Model.PaymentType.Amount</li>
+            <li><b>Dias para Pagar: </b>@Model.PaymentType.DaysToPay</li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>

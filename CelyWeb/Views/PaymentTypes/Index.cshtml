@@ -17,7 +17,7 @@
         @foreach(var paymentType in Model.PaymentTypes)
         {
             <tr>
-                <td>@paymentType.Type</td>
+                <td><a class="btn btn-link" href="/PaymentTypes/Details/@paymentType.Id">@paymentType.Type</a></td>
                 <td>@paymentType.DaysToPay</td>
             </tr>
         }

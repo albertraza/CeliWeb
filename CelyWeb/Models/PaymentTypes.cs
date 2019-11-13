@@ -34,7 +34,9 @@ namespace CelyWeb.Models
 
         public IPaymentTypes GetPaymentType(int id)
         {
-            throw new NotImplementedException();
+            var paymentType = _context.PaymentTypes.Single(p => p.Id == id);
+            return paymentType;
+
         }
 
         public IPaymentTypes Register(IPaymentTypes paymentType)

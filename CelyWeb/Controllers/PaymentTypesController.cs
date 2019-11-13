@@ -30,5 +30,10 @@ namespace CelyWeb.Controllers
 
             return View("PaymentTypesForm", viewModel);
         }
+
+        public ActionResult Details(int id)
+        {
+            return View(new PaymentTypesViewModel { PaymentType = (PaymentTypes)new PaymentTypes().GetPaymentType(id) });
+        }
     }
 }
