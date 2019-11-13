@@ -13,7 +13,7 @@ namespace CelyWeb.Controllers
         // GET: PaymentTypes
         public ActionResult Index()
         {
-            return View();
+            return View(new PaymentTypesViewModel { PaymentTypes = new PaymentTypes().GetPaymentTypes() });
         }
 
         public ActionResult New()
@@ -26,7 +26,7 @@ namespace CelyWeb.Controllers
             if (!ModelState.IsValid)
                 throw new NullReferenceException("One or multiple inputs are invalid");
 
-            viewModel.PaymentTypes = (PaymentTypes)new PaymentTypes().Register(viewModel.PaymentTypes);
+            viewModel.PaymentType = (PaymentTypes)new PaymentTypes().Register(viewModel.PaymentType);
 
             return View("PaymentTypesForm", viewModel);
         }

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New</h2>
+<h2>Tipo de Pago</h2>
 
 @using(Html.BeginForm("Save", "PaymentTypes"))
 {
@@ -14,19 +14,19 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                @Html.LabelFor(m => m.PaymentTypes.Type)
-                @Html.TextBoxFor(m => m.PaymentTypes.Type, new { @class = "form-control"})
-                @Html.ValidationMessageFor(m => m.PaymentTypes.Type)
+                @Html.LabelFor(m => m.PaymentType.Type)
+                @Html.TextBoxFor(m => m.PaymentType.Type, new { @class = "form-control"})
+                @Html.ValidationMessageFor(m => m.PaymentType.Type)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.PaymentTypes.Amount)
-                @Html.TextBoxFor(m => m.PaymentTypes.Amount, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PaymentTypes.Amount)
+                @Html.LabelFor(m => m.PaymentType.Amount)
+                @Html.TextBoxFor(m => m.PaymentType.Amount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.PaymentType.Amount)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.PaymentTypes.DaysToPay)
-                @Html.TextBoxFor(m => m.PaymentTypes.DaysToPay, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PaymentTypes.DaysToPay)
+                @Html.LabelFor(m => m.PaymentType.DaysToPay)
+                @Html.TextBoxFor(m => m.PaymentType.DaysToPay, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.PaymentType.DaysToPay)
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </div>

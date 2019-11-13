@@ -46,5 +46,10 @@ namespace CelyWeb.Models
 
             return paymentType;
         }
+
+        public List<PaymentTypes> GetPaymentTypes()
+        {
+            return _context.PaymentTypes.ToList();
+        }
     }
 }

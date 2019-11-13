@@ -1,8 +1,25 @@
-﻿
+﻿@model CelyWeb.ViewModels.PaymentTypesViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Tipos de Pagos</h2>
 
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Tipo de Pago</th>
+            <th>Dias para pagar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var paymentType in Model.PaymentTypes)
+        {
+            <tr>
+                <td>@paymentType.Type</td>
+                <td>@paymentType.DaysToPay</td>
+            </tr>
+        }
+    </tbody>
+</table>
