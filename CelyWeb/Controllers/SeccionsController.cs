@@ -32,7 +32,7 @@ namespace CelyWeb.Controllers
             }
             else
             {
-                viewModel.Seccion = (Seccion) new Seccion().Update(viewModel.Seccion);
+                viewModel.Seccion = (Seccion)new Seccion().Update(viewModel.Seccion);
                 return View("Details", viewModel);
             }
         }

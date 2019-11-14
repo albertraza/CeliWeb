@@ -23,8 +23,8 @@ namespace CelyWeb.ViewModels
             }
         }
 
-        public ISeccion Seccion { get; set; }
+        public Seccion Seccion { get; set; }
 
-        public List<ISeccion> Seccions { get; set; }
+        public List<Seccion> Seccions { get; set; }
     }
 }

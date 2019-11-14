@@ -39,23 +39,10 @@ namespace CelyWeb.Models
         }
 
 
-        public ISeccion GetSeccion(int id)
-        {
-            return _context.Seccions.Single(s => s.Id == id);
-        }
+        public ISeccion GetSeccion(int id) => _context.Seccions.Single(s => s.Id == id);
 
-        public List<ISeccion> GetSeccions()
-        {
-            var list = new List<ISeccion>();
-            var seccions = _context.Seccions.ToList();
+        public List<Seccion> GetSeccions() => _context.Seccions.ToList();
 
-            foreach(var seccion in seccions)
-            {
-                list.Add(seccion);
-            }
-
-            return list;
-        }
 
         public ISeccion Register(ISeccion seccion)
         {

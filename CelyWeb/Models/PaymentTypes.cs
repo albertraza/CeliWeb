@@ -32,12 +32,7 @@ namespace CelyWeb.Models
             _context = new ApplicationDbContext();
         }
 
-        public IPaymentTypes GetPaymentType(int id)
-        {
-            var paymentType = _context.PaymentTypes.Single(p => p.Id == id);
-            return paymentType;
-
-        }
+        public IPaymentTypes GetPaymentType(int id) => _context.PaymentTypes.Single(p => p.Id == id);
 
         public IPaymentTypes Register(IPaymentTypes paymentType)
         {
@@ -49,17 +44,6 @@ namespace CelyWeb.Models
             return paymentType;
         }
 
-        public List<IPaymentTypes> GetPaymentTypes()
-        {
-            var paymentTypes = _context.PaymentTypes.ToList();
-            var list = new List<IPaymentTypes>();
-
-            foreach (var paymentType in paymentTypes)
-            {
-                list.Add(paymentType);
-            }
-
-            return list;
-        }
+        public List<PaymentTypes> GetPaymentTypes() => _context.PaymentTypes.ToList();
     }
 }
