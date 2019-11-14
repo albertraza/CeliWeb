@@ -8,7 +8,7 @@ namespace CelyWeb.ViewModels
 {
     public class PaymentTypesViewModel
     {
-        public PaymentTypes PaymentType { get; set; }
-        public List<PaymentTypes> PaymentTypes { get; set; }
+        public IPaymentTypes PaymentType { get; set; }
+        public List<IPaymentTypes> PaymentTypes { get; set; }
     }
 }
