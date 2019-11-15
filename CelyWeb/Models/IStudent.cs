@@ -37,7 +37,10 @@ namespace CelyWeb.Models
 
         int? GroupOfStudentId { get; set; }
 
+        [Required]
         bool IsActive { get; set; }
+
+        DateTime? InactiveDate { get; set; }
 
         IStudent Register(IStudent student);
         IStudent Update(IStudent student);

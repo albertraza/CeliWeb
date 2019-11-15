@@ -49,7 +49,11 @@ namespace CelyWeb.Models
 
         public GroupOfStudents GroupOfStudents { get; set; }
 
+        [Required]
         public bool IsActive { get; set; }
+
+        public DateTime? InactiveDate { get; set; }
+
 
         public Student()
         {
@@ -58,13 +62,15 @@ namespace CelyWeb.Models
 
         public bool Delete(IStudent student)
         {
-            throw new NotImplementedException();
+            var studentInDb = _context.Students.Single(s => s.Id == student.Id);
+            studentInDb.IsActive = false;
+            studentInDb.InactiveDate = DateTime.Today;
+
+            _context.SaveChanges();
+            return true;
         }
 
-        public IStudent GetStudent(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public IStudent GetStudent(int id) => _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Single(s => s.Id == id);
 
         public List<Student> GetStudents() => _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
 
@@ -72,6 +78,7 @@ namespace CelyWeb.Models
         {
             student.DateAdded = DateTime.Today;
             student.PaymentDate = DateTime.Today.AddDays(_context.PaymentTypes.Single(p => p.Id == student.PaymentTypeId).DaysToPay);
+            student.IsActive = true;
 
             _context.Students.Add((Student)student);
 
