@@ -49,6 +49,8 @@ namespace CelyWeb.Models
 
         public GroupOfStudents GroupOfStudents { get; set; }
 
+        public bool IsActive { get; set; }
+
         public Student()
         {
             _context = new ApplicationDbContext();

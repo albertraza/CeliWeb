@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201911152324062_ChangedInterfacesforTypeImplementations.Designer.cs">
       <DependentUpon>201911152324062_ChangedInterfacesforTypeImplementations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911152342159_AddIsActivePropertyToStudents.cs" />
+    <Compile Include="Migrations\201911152342159_AddIsActivePropertyToStudents.Designer.cs">
+      <DependentUpon>201911152342159_AddIsActivePropertyToStudents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GroupOfStudents.cs" />
@@ -321,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911152324062_ChangedInterfacesforTypeImplementations.resx">
       <DependentUpon>201911152324062_ChangedInterfacesforTypeImplementations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911152342159_AddIsActivePropertyToStudents.resx">
+      <DependentUpon>201911152342159_AddIsActivePropertyToStudents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
