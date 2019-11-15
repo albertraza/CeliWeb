@@ -8,12 +8,16 @@ namespace CelyWeb.Models
 {
     public class Student : IStudent
     {
+        private ApplicationDbContext _context;
+
         public int Id { get; set; }
 
         [Required]
+        [Display(Name ="Nombre")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Apellidos")]
         public string LastName { get; set; }
 
         [Required]
@@ -25,11 +29,13 @@ namespace CelyWeb.Models
         public DateTime? LastPaymentDate { get; set; }
 
         [Required]
+        [Display(Name ="Seccion")]
         public int SeccionId { get; set; }
 
         public ISeccion Seccion { get; set; }
 
         [Required]
+        [Display(Name ="Tipo de Pago")]
         public int PaymentTypeId { get; set; }
 
         public IPaymentTypes PaymentType { get; set; }
@@ -42,6 +48,10 @@ namespace CelyWeb.Models
 
         public IGroupOfStudents GroupOfStudents { get; set; }
 
+        public Student()
+        {
+            _context = new ApplicationDbContext();
+        }
 
         public bool Delete(IStudent student)
         {
@@ -60,7 +70,12 @@ namespace CelyWeb.Models
 
         public IStudent Register(IStudent student)
         {
-            throw new NotImplementedException();
+            student.DateAdded = DateTime.Today;
+            student.PaymentDate = DateTime.Today.AddDays(_context.PaymentTypes.Single(p => p.Id == student.PaymentTypeId).DaysToPay);
+
+            _context.Students.Add((Student)student);
+
+            return student;
         }
 
         public IStudent Update(IStudent student)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CelyWeb.Models;
+using CelyWeb.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +18,18 @@ namespace CelyWeb.Controllers
 
         public ActionResult Register()
         {
-            return View();
+            return View(new StudentsViewModel { PaymentTypes = new PaymentTypes().GetPaymentTypes(), Seccions = new Seccion().GetSeccions() });
+        }
+
+        [HttpPost]
+        public ActionResult Save(StudentsViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                throw new Exception("Uno o mas inputs no estan llenos");
+
+            viewModel.Student = (Student)new Student().Register(viewModel.Student);
+
+            return View("Register", viewModel);
         }
     }
 }
