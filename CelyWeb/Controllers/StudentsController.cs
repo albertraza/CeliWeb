@@ -29,7 +29,7 @@ namespace CelyWeb.Controllers
 
             viewModel.Student = (Student)new Student().Register(viewModel.Student);
 
-            return View("Register", viewModel);
+            return View("Index", new StudentsViewModel { Students = new Student().GetStudents() });
         }
     }
 }

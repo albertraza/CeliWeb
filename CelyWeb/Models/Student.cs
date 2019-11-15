@@ -73,6 +73,8 @@ namespace CelyWeb.Models
 
             _context.Students.Add((Student)student);
 
+            _context.SaveChanges();
+
             return student;
         }
 
