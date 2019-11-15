@@ -13,7 +13,7 @@ namespace CelyWeb.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View();
+            return View(new StudentsViewModel { Students = new Student().GetStudents() });
         }
 
         public ActionResult Register()

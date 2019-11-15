@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -32,13 +33,13 @@ namespace CelyWeb.Models
         [Display(Name ="Seccion")]
         public int SeccionId { get; set; }
 
-        public ISeccion Seccion { get; set; }
+        public Seccion Seccion { get; set; }
 
         [Required]
         [Display(Name ="Tipo de Pago")]
         public int PaymentTypeId { get; set; }
 
-        public IPaymentTypes PaymentType { get; set; }
+        public PaymentTypes PaymentType { get; set; }
 
         public bool IsDelinquent { get; set; }
 
@@ -46,7 +47,7 @@ namespace CelyWeb.Models
 
         public int? GroupOfStudentId { get; set; }
 
-        public IGroupOfStudents GroupOfStudents { get; set; }
+        public GroupOfStudents GroupOfStudents { get; set; }
 
         public Student()
         {
@@ -63,10 +64,7 @@ namespace CelyWeb.Models
             throw new NotImplementedException();
         }
 
-        public List<IStudent> GetStudents()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Student> GetStudents() => _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
 
         public IStudent Register(IStudent student)
         {

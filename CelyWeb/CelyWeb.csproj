@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201911081500203_AddStudents.Designer.cs">
       <DependentUpon>201911081500203_AddStudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911152324062_ChangedInterfacesforTypeImplementations.cs" />
+    <Compile Include="Migrations\201911152324062_ChangedInterfacesforTypeImplementations.Designer.cs">
+      <DependentUpon>201911152324062_ChangedInterfacesforTypeImplementations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GroupOfStudents.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911081500203_AddStudents.resx">
       <DependentUpon>201911081500203_AddStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911152324062_ChangedInterfacesforTypeImplementations.resx">
+      <DependentUpon>201911152324062_ChangedInterfacesforTypeImplementations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

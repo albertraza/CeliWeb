@@ -1,4 +1,4 @@
-﻿
+﻿@model CelyWeb.ViewModels.StudentsViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +6,22 @@
 
 <h2>Students</h2>
 
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Seccion</th>
+            <th>Tipo de Pago</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.Name @student.LastName</td>
+                <td>@student.Seccion.Nivel</td>
+                <td>@student.PaymentType.Type</td>
+            </tr>
+        }
+    </tbody>
+</table>

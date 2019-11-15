@@ -28,12 +28,12 @@ namespace CelyWeb.Models
         [Required]
         int SeccionId { get; set; }
 
-        ISeccion Seccion { get; set; }
+        //ISeccion Seccion { get; set; }
 
         [Required]
         int PaymentTypeId { get; set; }
 
-        IPaymentTypes PaymentType { get; set; }
+        //IPaymentTypes PaymentType { get; set; }
 
         bool IsDelinquent { get; set; }
 
@@ -41,14 +41,13 @@ namespace CelyWeb.Models
 
         int? GroupOfStudentId { get; set; }
 
-        IGroupOfStudents GroupOfStudents { get; set; }
+        //IGroupOfStudents GroupOfStudents { get; set; }
 
 
 
         IStudent Register(IStudent student);
         IStudent Update(IStudent student);
         bool Delete(IStudent student);
-        List<IStudent> GetStudents();
         IStudent GetStudent(int id);
     }
 }
