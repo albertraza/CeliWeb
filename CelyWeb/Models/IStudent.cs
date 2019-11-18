@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace CelyWeb.Models
 {
@@ -16,6 +17,8 @@ namespace CelyWeb.Models
 
         [Required]
         string LastName { get; set; }
+
+        byte[] Photo { get; set; }
 
         [Required]
         DateTime DateAdded { get; set; }
@@ -42,7 +45,7 @@ namespace CelyWeb.Models
 
         DateTime? InactiveDate { get; set; }
 
-        IStudent Register(IStudent student);
+        IStudent Register(IStudent student, HttpPostedFileBase Photo);
         IStudent Update(IStudent student);
         bool Delete(IStudent student);
         IStudent GetStudent(int id);

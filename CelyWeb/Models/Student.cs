@@ -76,8 +76,14 @@ namespace CelyWeb.Models
 
         public List<Student> GetStudents() => _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
 
-        public IStudent Register(IStudent student)
+        public IStudent Register(IStudent student, HttpPostedFileBase Photo)
         {
+            if(Photo != null)
+            {
+                student.Photo = new byte[Photo.ContentLength];
+                Photo.InputStream.Read(student.Photo, 0, Photo.ContentLength);
+            }
+
             student.DateAdded = DateTime.Today;
             student.PaymentDate = DateTime.Today.AddDays(_context.PaymentTypes.Single(p => p.Id == student.PaymentTypeId).DaysToPay);
             student.IsActive = true;

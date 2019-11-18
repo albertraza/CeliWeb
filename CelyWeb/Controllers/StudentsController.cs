@@ -22,12 +22,12 @@ namespace CelyWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(StudentsViewModel viewModel)
+        public ActionResult Save(StudentsViewModel viewModel, HttpPostedFileBase Photo)
         {
             if (!ModelState.IsValid)
                 throw new Exception("Uno o mas inputs no estan llenos");
 
-            viewModel.Student = (Student)new Student().Register(viewModel.Student);
+            viewModel.Student = (Student)new Student().Register(viewModel.Student, Photo);
 
             return View("Index", new StudentsViewModel { Students = new Student().GetStudents() });
         }
