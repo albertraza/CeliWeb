@@ -9,10 +9,21 @@
 <div class="row">
     @using (Html.BeginForm("Save", "Students", FormMethod.Post, new { enctype = "multipart/form-data"}))
     {
-        <div class="col-md-4">
-            <img src="" id="ImgDetalle" />
-            <input class="btn btn-primary" type="file" id="Photo" name="Photo" onchange="readURL(this);" accept="image/jpg, image/jpeg, image/png, image/gif"/>
-        </div>
+    <div class="col-md-4">
+        @{
+            if (Model.Student.Photo != null)
+            {
+                var base64 = Convert.ToBase64String(Model.Student.Photo);
+                var imgSrc = string.Format("data;image/gif;base64,{0}", base64);
+                <img src="@imgSrc" id="ImgDetalle" />
+            }
+            else
+            {
+                <img src="" id="ImgDetalle" />
+            }
+        }
+        <input class="btn btn-primary" type="file" id="Photo" name="Photo" onchange="readURL(this);" accept="image/jpg, image/jpeg, image/png, image/gif" />
+    </div>
 
         <div class="col-md-8">
 
@@ -41,6 +52,9 @@
                     @Html.CheckBoxFor(m => m.Student.IsVIP) Es un Estudiante VIP?
                 </label>
             </div>
+
+            @Html.HiddenFor(m => m.Student.Id)
+
             <button type="submit" class="btn btn-primary">Guardar</button>
 
         </div>

@@ -46,7 +46,7 @@ namespace CelyWeb.Models
         DateTime? InactiveDate { get; set; }
 
         IStudent Register(IStudent student, HttpPostedFileBase Photo);
-        IStudent Update(IStudent student);
+        IStudent Update(IStudent student, HttpPostedFileBase Photo);
         bool Delete(IStudent student);
         IStudent GetStudent(int id);
     }

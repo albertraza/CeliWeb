@@ -95,9 +95,28 @@ namespace CelyWeb.Models
             return student;
         }
 
-        public IStudent Update(IStudent student)
+        public IStudent Update(IStudent student, HttpPostedFileBase Photo)
         {
-            throw new NotImplementedException();
+            var studentInDb = _context.Students.Single(s => s.Id == student.Id);
+
+            studentInDb.Name = student.Name;
+            studentInDb.LastName = student.LastName;
+            studentInDb.IsVIP = student.IsVIP;
+            studentInDb.PaymentTypeId = student.PaymentTypeId;
+            studentInDb.SeccionId = student.SeccionId;
+
+            if(Photo != null)
+            {
+                studentInDb.Photo = new byte[Photo.ContentLength];
+                Photo.InputStream.Read(studentInDb.Photo, 0, Photo.ContentLength);
+            }
+
+            _context.SaveChanges();
+
+            // retrieving all new info, updated.
+            studentInDb = _context.Students.Include(s => s.Seccion).Include(s => s.PaymentType).Single(s => s.Id == student.Id);
+
+            return studentInDb;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace CelyWeb.Controllers
 
         public ActionResult Register()
         {
-            return View(new StudentsViewModel { PaymentTypes = new PaymentTypes().GetPaymentTypes(), Seccions = new Seccion().GetSeccions() });
+            return View(new StudentsViewModel { PaymentTypes = new PaymentTypes().GetPaymentTypes(), Seccions = new Seccion().GetSeccions(), Student = new Student() });
         }
 
         [HttpPost]
@@ -27,14 +27,26 @@ namespace CelyWeb.Controllers
             if (!ModelState.IsValid)
                 throw new Exception("Uno o mas inputs no estan llenos");
 
-            viewModel.Student = (Student)new Student().Register(viewModel.Student, Photo);
+            if (viewModel.Student.Id == 0)
+            {
+                viewModel.Student = (Student)new Student().Register(viewModel.Student, Photo);
 
-            return View("Index", new StudentsViewModel { Students = new Student().GetStudents() });
+                return View("Index", new StudentsViewModel { Students = new Student().GetStudents() });
+            }
+            else
+            {
+                return View("Details", new StudentsViewModel { Student = (Student)new Student().Update(viewModel.Student, Photo) });
+            }
         }
 
         public ActionResult Details(int id)
         {
             return View(new StudentsViewModel { Student = (Student)new Student().GetStudent(id) });
+        }
+
+        public ActionResult Modify(int id)
+        {
+            return View("Register", new StudentsViewModel { PaymentTypes = new PaymentTypes().GetPaymentTypes(), Seccions = new Seccion().GetSeccions(), Student = (Student)new Student().GetStudent(id) });
         }
     }
 }
