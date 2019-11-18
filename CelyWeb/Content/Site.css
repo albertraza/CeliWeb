@@ -59,3 +59,7 @@ body {
     width: 250px;
     margin-top: 17px;
 }
+
+input {
+    margin-top: 10px;
+}

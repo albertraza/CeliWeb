@@ -10,7 +10,8 @@
     @using (Html.BeginForm("Save", "Students", FormMethod.Post, new { enctype = "multipart/form-data"}))
     {
         <div class="col-md-4">
-            <input type="file" id="Photo" name="Photo" />
+            <img src="" id="ImgDetalle" />
+            <input class="btn btn-primary" type="file" id="Photo" name="Photo" onchange="readURL(this);" accept="image/jpg, image/jpeg, image/png, image/gif"/>
         </div>
 
         <div class="col-md-8">
@@ -45,7 +46,8 @@
         </div>
     }
 </div>
-
 @section scripts {
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/site")
     }
