@@ -21,6 +21,8 @@ namespace CelyWeb.Models
         [Display(Name = "Apellidos")]
         public string LastName { get; set; }
 
+        public byte[] Photo { get; set; }
+
         [Required]
         public DateTime DateAdded { get; set; }
 

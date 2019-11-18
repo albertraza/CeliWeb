@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201911152350174_AddInactiveDateToStudents.Designer.cs">
       <DependentUpon>201911152350174_AddInactiveDateToStudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911181319290_AddPhotoPropToStudent.cs" />
+    <Compile Include="Migrations\201911181319290_AddPhotoPropToStudent.Designer.cs">
+      <DependentUpon>201911181319290_AddPhotoPropToStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GroupOfStudents.cs" />
@@ -239,6 +243,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\img_avatar.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -336,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911152350174_AddInactiveDateToStudents.resx">
       <DependentUpon>201911152350174_AddInactiveDateToStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911181319290_AddPhotoPropToStudent.resx">
+      <DependentUpon>201911181319290_AddPhotoPropToStudent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
