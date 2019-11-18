@@ -1,0 +1,39 @@
+﻿@model CelyWeb.ViewModels.StudentsViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-8">
+        <h3>@Model.Student.Name @Model.Student.LastName</h3>
+
+        <h4>Detalles</h4>
+        <ul>
+            <li><b>Fecha de Registro:</b> @Model.Student.DateAdded.ToLongDateString()</li>
+            <li><b>Seccion:</b> @Model.Student.Seccion.Nivel</li>
+        </ul>
+
+        <h4>Pagos</h4>
+        <ul>
+            <li><b>Tipo de Pago: </b>@Model.Student.PaymentType.Type</li>
+            <li><b>Fecha Proximo Pago: </b>@Model.Student.PaymentDate.ToLongDateString()</li>
+            <li><b>Cantidad de pago: </b>RD$@Model.Student.PaymentType.Amount</li>
+
+            @if(Model.Student.GroupOfStudentId != null)
+            {
+                <li><b>Familia: </b>@Model.Student.GroupOfStudents.Name</li>
+            }
+
+        </ul>
+        <a class="btn btn-primary" href="/Students/Register">Nuevo Estudiante</a>
+        <a class="btn btn-primary">Modificar</a>
+        <a class="btn btn-primary">Eliminar</a>
+        <a class="btn btn-primary">Hacer un pago</a>
+    </div>
+</div>

@@ -18,7 +18,7 @@
         @foreach (var student in Model.Students)
         {
             <tr>
-                <td>@student.Name @student.LastName</td>
+                <td><a href="/Students/Details/@student.Id">@student.Name @student.LastName</a></td>
                 <td>@student.Seccion.Nivel</td>
                 <td>@student.PaymentType.Type</td>
             </tr>

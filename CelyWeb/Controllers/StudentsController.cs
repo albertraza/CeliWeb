@@ -31,5 +31,10 @@ namespace CelyWeb.Controllers
 
             return View("Index", new StudentsViewModel { Students = new Student().GetStudents() });
         }
+
+        public ActionResult Details(int id)
+        {
+            return View(new StudentsViewModel { Student = (Student)new Student().GetStudent(id) });
+        }
     }
 }
