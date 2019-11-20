@@ -9,6 +9,7 @@
 <div class="row">
     @using (Html.BeginForm("Save", "Students", FormMethod.Post, new { enctype = "multipart/form-data"}))
     {
+        @Html.ValidationSummary(true)
     <div class="col-md-4">
         @{
             if (Model.Student.Photo != null)

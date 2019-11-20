@@ -28,6 +28,16 @@
                 @Html.TextBoxFor(m => m.PaymentType.DaysToPay, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.PaymentType.DaysToPay)
             </div>
+            <div class="form-group">
+                <label>
+                    @Html.CheckBoxFor(m => m.PaymentType.IsVIP) Es para Pagos VIPs?
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    @Html.CheckBoxFor(m => m.PaymentType.IsForGroups) Es para pagos Familiares?
+                </label>
+            </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
         <div class="col-md-4">

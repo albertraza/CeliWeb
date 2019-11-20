@@ -223,6 +223,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CustomValidations\VIPRequired.cs" />
     <Compile Include="Models\GroupOfStudents.cs" />
     <Compile Include="Models\IGroupOfStudents.cs" />
     <Compile Include="Models\IdentityModels.cs" />

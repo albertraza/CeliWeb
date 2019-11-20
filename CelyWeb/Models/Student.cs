@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CelyWeb.Models.CustomValidations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
@@ -38,6 +39,7 @@ namespace CelyWeb.Models
         public Seccion Seccion { get; set; }
 
         [Required]
+        [VIPRequired]
         [Display(Name ="Tipo de Pago")]
         public int PaymentTypeId { get; set; }
 

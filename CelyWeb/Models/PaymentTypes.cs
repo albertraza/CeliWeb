@@ -42,6 +42,15 @@ namespace CelyWeb.Models
 
         public IPaymentTypes Register(IPaymentTypes paymentType)
         {
+
+            paymentType.Type = paymentType.Type + " " + DateTime.Today.ToString("MMM/yyyy");
+
+            if (paymentType.IsVIP)
+                paymentType.Type = paymentType.Type + " -VIP";
+
+            if (paymentType.IsForGroups)
+                paymentType.Type = paymentType.Type + " -Familiar";
+
             paymentType.DateAdded = DateTime.Today;
 
             _context.PaymentTypes.Add((PaymentTypes)paymentType);

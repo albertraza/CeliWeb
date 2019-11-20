@@ -25,7 +25,12 @@ namespace CelyWeb.Controllers
         public ActionResult Save(StudentsViewModel viewModel, HttpPostedFileBase Photo)
         {
             if (!ModelState.IsValid)
-                throw new Exception("Uno o mas inputs no estan llenos");
+            {
+                viewModel.PaymentTypes = new PaymentTypes().GetPaymentTypes();
+                viewModel.Seccions = new Seccion().GetSeccions();
+
+                return View("Register", viewModel);
+            }
 
             if (viewModel.Student.Id == 0)
             {
