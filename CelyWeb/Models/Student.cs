@@ -106,6 +106,7 @@ namespace CelyWeb.Models
             studentInDb.IsVIP = student.IsVIP;
             studentInDb.PaymentTypeId = student.PaymentTypeId;
             studentInDb.SeccionId = student.SeccionId;
+            studentInDb.GroupOfStudentId = student.GroupOfStudentId;
 
             if(Photo != null)
             {

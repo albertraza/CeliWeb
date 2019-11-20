@@ -8,6 +8,8 @@ namespace CelyWeb.Models
 {
     public class GroupOfStudents : IGroupOfStudents
     {
+        private ApplicationDbContext _context;
+
         public int Id { get; set; }
 
         [Required]
@@ -25,6 +27,10 @@ namespace CelyWeb.Models
 
         public bool IsVIP { get; set; }
 
+        public GroupOfStudents()
+        {
+            _context = new ApplicationDbContext();
+        }
 
         public bool Delete(IGroupOfStudents groupOfStudents)
         {
@@ -43,7 +49,19 @@ namespace CelyWeb.Models
 
         public IGroupOfStudents Register(IGroupOfStudents groupOfStudents)
         {
-            throw new NotImplementedException();
+            _context.GroupOfStudents.Add((GroupOfStudents)groupOfStudents);
+
+            _context.SaveChanges();
+
+            foreach (var studentId in groupOfStudents.StudentsIds)
+            {
+                var student = _context.Students.Single(s => s.Id == studentId);
+                student.GroupOfStudentId = groupOfStudents.Id;
+
+                new Student().Update(student, null);
+            }
+
+            return groupOfStudents;
         }
 
         public IGroupOfStudents Update(IGroupOfStudents groupOfStudents)
