@@ -22,7 +22,11 @@ namespace CelyWeb.Models
         [Required]
         int DaysToPay { get; set; }
 
+        [Required]
+        bool IsVIP { get; set; }
 
+        [Required]
+        bool IsForGroups { get; set; }
 
         IPaymentTypes Register(IPaymentTypes paymentType);
         IPaymentTypes GetPaymentType(int id);

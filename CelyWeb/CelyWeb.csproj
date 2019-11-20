@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201911181319290_AddPhotoPropToStudent.Designer.cs">
       <DependentUpon>201911181319290_AddPhotoPropToStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.cs" />
+    <Compile Include="Migrations\201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.Designer.cs">
+      <DependentUpon>201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GroupOfStudents.cs" />
@@ -347,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911181319290_AddPhotoPropToStudent.resx">
       <DependentUpon>201911181319290_AddPhotoPropToStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.resx">
+      <DependentUpon>201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

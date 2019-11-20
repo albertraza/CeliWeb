@@ -27,6 +27,12 @@ namespace CelyWeb.Models
         [Display(Name ="Cantidad de Dias para pagar")]
         public int DaysToPay {get; set; }
 
+        [Required]
+        public bool IsVIP { get; set; }
+
+        [Required]
+        public bool IsForGroups { get; set; }
+
         public PaymentTypes()
         {
             _context = new ApplicationDbContext();
