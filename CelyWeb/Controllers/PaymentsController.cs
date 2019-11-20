@@ -13,10 +13,5 @@ namespace CelyWeb.Controllers
         {
             return View();
         }
-
-        public ActionResult Index(int id)
-        {
-            return View();
-        }
     }
 }
