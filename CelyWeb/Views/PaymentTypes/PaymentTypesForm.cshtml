@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Tipo de Pago</h2>
-
 @using(Html.BeginForm("Save", "PaymentTypes"))
 {
     <div class="row">
@@ -13,9 +11,11 @@
 
         </div>
         <div class="col-md-4">
+            <h2>Tipo de Pago</h2>
+
             <div class="form-group">
                 @Html.LabelFor(m => m.PaymentType.Type)
-                @Html.TextBoxFor(m => m.PaymentType.Type, new { @class = "form-control"})
+                @Html.TextBoxFor(m => m.PaymentType.Type, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.PaymentType.Type)
             </div>
             <div class="form-group">
