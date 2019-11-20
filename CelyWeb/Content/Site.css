@@ -63,3 +63,11 @@ body {
 input {
     margin-top: 10px;
 }
+
+.input-validation-error {
+    border: 2px solid red;
+}
+
+.field-validation-error{
+    color: red;
+}
