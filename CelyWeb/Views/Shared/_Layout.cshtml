@@ -23,11 +23,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Students <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estudiantes <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Register", "Register", "Students")</li>
-                            <li><a href="#">Pay</a></li>
-                            <li>@Html.ActionLink("Status", "Index", "Students")</li>
+                            <li>@Html.ActionLink("Registrar", "Register", "Students")</li>
+                            <li>@Html.ActionLink("Pagos", "Index", "Payments")</li>
+                            <li>@Html.ActionLink("Estudiantes", "Index", "Students")</li>
                         </ul>
                     </li>
 
@@ -47,8 +47,8 @@
                         </ul>
                     </li>
 
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Acerca", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
                         @Html.Partial("_LoginPartial")
 </div>
