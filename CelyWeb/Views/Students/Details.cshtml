@@ -6,7 +6,10 @@
 
 <h2>Detalles del Estudiante</h2>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-4 col-lg-4">
+
+    </div>
+    <div class="col-md-8 col-sm-8 col-lg-8">
         @{
             if (Model.Student.Photo != null)
             {
@@ -16,12 +19,17 @@
             }
             else
             {
-                <img id="ImgDetalle" src="~/Images/img_avatar.png"/>
+                <img id="ImgDetalle" src="~/Images/img_avatar.png" />
             }
         }
-    </div>
-    <div class="col-md-8">
         <h3>@Model.Student.Name @Model.Student.LastName</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-sm-4 col-lg-4">
+
+    </div>
+    <div class="col-md-8 col-sm-8 col-lg-8">
 
         <h4>Detalles</h4>
         <ul>
@@ -35,7 +43,7 @@
             <li><b>Fecha Proximo Pago: </b>@Model.Student.PaymentDate.ToLongDateString()</li>
             <li><b>Cantidad de pago: </b>RD$@Model.Student.PaymentType.Amount</li>
 
-            @if(Model.Student.GroupOfStudentId != null)
+            @if (Model.Student.GroupOfStudentId != null)
             {
                 <li><b>Familia: </b>@Model.Student.GroupOfStudents.Name</li>
             }
