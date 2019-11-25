@@ -30,7 +30,6 @@ namespace CelyWeb.Models
         IGroupOfStudents Register(IGroupOfStudents groupOfStudents);
         IGroupOfStudents Update(IGroupOfStudents groupOfStudents);
         bool Delete(IGroupOfStudents groupOfStudents);
-        List<IGroupOfStudents> GetGroupOfStudents();
         IGroupOfStudents GetGroup(int id);
     }
 }

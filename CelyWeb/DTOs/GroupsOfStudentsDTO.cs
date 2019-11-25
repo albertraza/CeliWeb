@@ -41,7 +41,7 @@ namespace CelyWeb.DTOs
 
             foreach (var group in groups)
             {
-                groupsToReturn.Add(Mapper.Map<GroupOfStudents, GroupsOfStudentsDTO>((GroupOfStudents)group));
+                groupsToReturn.Add(Mapper.Map<GroupOfStudents, GroupsOfStudentsDTO>(group));
             }
 
             return groupsToReturn;

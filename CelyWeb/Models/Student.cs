@@ -97,7 +97,7 @@ namespace CelyWeb.Models
             return student;
         }
 
-        public IStudent Update(IStudent student, HttpPostedFileBase Photo)
+        public IStudent Update(IStudent student, HttpPostedFileBase Photo = null)
         {
             var studentInDb = _context.Students.Single(s => s.Id == student.Id);
 

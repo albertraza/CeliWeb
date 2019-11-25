@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -37,15 +38,9 @@ namespace CelyWeb.Models
             throw new NotImplementedException();
         }
 
-        public IGroupOfStudents GetGroup(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public IGroupOfStudents GetGroup(int id) => _context.GroupOfStudents.Single(g => g.Id == id);
 
-        public List<IGroupOfStudents> GetGroupOfStudents()
-        {
-            throw new NotImplementedException();
-        }
+        public List<GroupOfStudents> GetGroupOfStudents() => _context.GroupOfStudents.ToList();
 
         public IGroupOfStudents Register(IGroupOfStudents groupOfStudents)
         {
@@ -66,7 +61,18 @@ namespace CelyWeb.Models
 
         public IGroupOfStudents Update(IGroupOfStudents groupOfStudents)
         {
-            throw new NotImplementedException();
+            var groupInDb = _context.GroupOfStudents.Single(g => g.Id == groupOfStudents.Id);
+
+            Mapper.Map((GroupOfStudents)groupOfStudents, groupInDb);
+
+            foreach (var student in groupOfStudents.Students)
+            {
+                new Student().Update(student);
+            }
+
+            _context.SaveChanges();
+
+            return groupOfStudents;
         }
     }
 }
