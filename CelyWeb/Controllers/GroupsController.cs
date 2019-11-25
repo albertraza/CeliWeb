@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CelyWeb.Models;
+using CelyWeb.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,12 @@ namespace CelyWeb.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+
+        public ActionResult New()
+        {
+            return View("GroupsForm", new GroupsViewModel { PaymentTypes = new PaymentTypes().GetPaymentTypes() });
         }
     }
 }
