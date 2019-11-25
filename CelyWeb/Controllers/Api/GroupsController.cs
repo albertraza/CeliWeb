@@ -14,13 +14,13 @@ namespace CelyWeb.Controllers.Api
         [HttpPost]
         public IHttpActionResult Save(GroupsViewModel viewModel)
         {
-            //if (!ModelState.IsValid)
-            //    return 
+            if (!ModelState.IsValid)
+                return BadRequest();
 
             if (viewModel.GroupOfStudents.Id == 0)
             {
                 new GroupOfStudents().Register(viewModel.GroupOfStudents);
-                return Ok();
+                return Created(new Uri(Request.RequestUri + "/" + viewModel.GroupOfStudents.Id), viewModel.GroupOfStudents);
             }
             else
             {
