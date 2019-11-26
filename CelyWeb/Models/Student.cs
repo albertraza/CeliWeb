@@ -76,7 +76,13 @@ namespace CelyWeb.Models
 
         public IStudent GetStudent(int id) => _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Single(s => s.Id == id);
 
-        public List<Student> GetStudents() => _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
+        public List<Student> GetStudents(string query = null)
+        {
+            if (query != null)
+                return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Where(s => s.Name.Contains(query) || s.LastName.Contains(query)).ToList();
+
+          return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
+        }
 
         public IStudent Register(IStudent student, HttpPostedFileBase Photo)
         {

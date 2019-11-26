@@ -17,6 +17,10 @@ namespace CelyWeb.App_Start
 
             Mapper.CreateMap<PaymentTypes, PaymentTypesDTO>();
             Mapper.CreateMap<PaymentTypesDTO, PaymentTypes>();
+
+            Mapper.CreateMap<StudentsDTO, Student>();
+            Mapper.CreateMap<Student, StudentsDTO>();
+
         }
     }
 }
