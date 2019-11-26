@@ -7,46 +7,34 @@
 <h2>Nueva Familia</h2>
 
 <div class="row">
-    <div class="col-sm-2">
+    <form>
+        <div class="col-sm-2">
 
-    </div>
-    @using (Html.BeginForm("Save", "Groups"))
-    {
-        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-5">
             <div class="form-group">
-                @Html.LabelFor(m => m.GroupOfStudents.Name)
-                @Html.TextBoxFor(m => m.GroupOfStudents.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.GroupOfStudents.Name)
+                <label>Nombre</label>
+                <input type="text" name="name" class="form-control" />
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.GroupOfStudents.PaymentTypeId)
-                @Html.DropDownListFor(m => m.GroupOfStudents.PaymentTypeId, new SelectList(Model.PaymentTypes, "Id", "Type"), "Selecciona un Tipo de Pago", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.GroupOfStudents.PaymentTypeId)
+                <label>Tipo de Pago</label>
+                <input type="text" name="paymentType" class="form-control" />
             </div>
             <div class="form-group">
                 <label>
-                    @Html.CheckBoxFor(m => m.GroupOfStudents.IsVIP) ¿Es VIP?
+                    <input type="checkbox" name="isVip" /> Es VIP?
                 </label>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <h3>Estudiantes</h3>
             <div class="form-group">
-                <label>Nombre: </label>
-                <input type="text" class="form-control" name="studentName" id="studentName" required />
+                <label>Estudiante</label>
+                <input type="text" name="student" class="form-control" />
             </div>
+
         </div>
-    }
+        <div class="col-sm-5">
+            
+        </div>
+
+        <button class="btn btn-primary">Guardar</button>
+    </form>
 </div>
-
-@section scripts{
-    @Scripts.Render("~/bundles/site")
-
-
-    <script>
-        var studentsIDs = [];
-
-    </script>
-
-
-    }
