@@ -194,6 +194,7 @@
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="DTOs\GroupsOfStudentsDTO.cs" />
     <Compile Include="DTOs\PaymentTypesDTO.cs" />
+    <Compile Include="DTOs\SeccionDTO.cs" />
     <Compile Include="DTOs\StudentsDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -32,7 +32,7 @@ namespace CelyWeb.DTOs
         [Required]
         public int SeccionId { get; set; }
 
-        public Seccion Seccion { get; set; }
+        public SeccionDTO Seccion { get; set; }
 
         [Required]
         public int PaymentTypeId { get; set; }

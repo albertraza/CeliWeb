@@ -21,6 +21,9 @@ namespace CelyWeb.App_Start
             Mapper.CreateMap<StudentsDTO, Student>();
             Mapper.CreateMap<Student, StudentsDTO>();
 
+            Mapper.CreateMap<Seccion, SeccionDTO>();
+            Mapper.CreateMap<SeccionDTO, Seccion>();
+
         }
     }
 }
