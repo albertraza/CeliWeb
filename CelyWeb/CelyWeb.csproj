@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\GroupsController.cs" />
+    <Compile Include="Controllers\Api\PaymentsController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Controllers\SeccionsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="DTOs\GroupsOfStudentsDTO.cs" />
+    <Compile Include="DTOs\PaymentTypesDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

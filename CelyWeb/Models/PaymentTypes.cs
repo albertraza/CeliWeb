@@ -59,6 +59,12 @@ namespace CelyWeb.Models
             return paymentType;
         }
 
-        public List<PaymentTypes> GetPaymentTypes() => _context.PaymentTypes.ToList();
+        public List<PaymentTypes> GetPaymentTypes(string query = null)
+        {
+            if (query != null)
+                return _context.PaymentTypes.Where(p => p.Type.Contains(query)).ToList();
+
+            return _context.PaymentTypes.ToList();
+        }
     }
 }
