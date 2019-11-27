@@ -68,6 +68,8 @@ $(document).ready(function () {
             source: students
         }).on("typeahead:select", function (e, student) {
 
+            e.preventDefault();
+
             $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName + "</li>");
             $("#js-student").typeahead("val", "");
 
