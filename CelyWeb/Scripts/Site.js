@@ -98,15 +98,16 @@ $(document).ready(function () {
         })
             .done(function (data) {
 
-                console.log("success " + data);
+                toastr.success("Familia añadida!");
+
                 $("#js-students").empty();
                 $("#js-name").val("");
-                $("#js-paymentType").val("");
+                $("#js-paymentTypes").val("");
 
                 groupDto.studentsIds = [];
 
             }).fail(function (e) {
-                console.log(e);
+                toastr.error("Ha ocurrido un error.");
             });
 
     });

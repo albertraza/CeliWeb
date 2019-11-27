@@ -15,6 +15,7 @@ namespace CelyWeb
                  "~/Scripts/bootstrap.js",
                   "~/Scripts/site.js",
                   "~/Scripts/jquery.dataTables.js",
+                  "~/Scripts/toastr.js",
                   "~/Scripts/typeahead.bundle.js"
                 ));
 
@@ -29,6 +30,7 @@ namespace CelyWeb
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/typeahead.css",
+                      "~/Content/toastr.css",
                       "~/Content/site.css"));
         }
     }
