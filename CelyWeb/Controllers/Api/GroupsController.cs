@@ -1,4 +1,6 @@
-﻿using CelyWeb.Models;
+﻿using AutoMapper;
+using CelyWeb.DTOs;
+using CelyWeb.Models;
 using CelyWeb.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,19 +14,20 @@ namespace CelyWeb.Controllers.Api
     public class GroupsController : ApiController
     {
         [HttpPost]
-        public IHttpActionResult Save(GroupsViewModel viewModel)
+        public IHttpActionResult Save(GroupsOfStudentsDTO groupDTO)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if (viewModel.GroupOfStudents.Id == 0)
+            if (groupDTO.Id == 0)
             {
-                new GroupOfStudents().Register(viewModel.GroupOfStudents);
-                return Created(new Uri(Request.RequestUri + "/" + viewModel.GroupOfStudents.Id), viewModel.GroupOfStudents);
+                var group = new GroupOfStudents().Register(Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(groupDTO));
+                Mapper.Map((GroupOfStudents)group, groupDTO);
+                return Created(new Uri(Request.RequestUri + "/" + group.Id), groupDTO);
             }
             else
             {
-                new GroupOfStudents().Update(viewModel.GroupOfStudents);
+                new GroupOfStudents().Update(Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(groupDTO));
                 return Ok();
             }
         }

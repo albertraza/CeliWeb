@@ -1,4 +1,5 @@
-﻿
+﻿"use strict";
+
 var studentsId = [];
 
 
@@ -17,12 +18,39 @@ function readURL(input) {
 
 }
 
-
-
 $(document).ready(function () {
 
-    var studentsName = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Name'),
+    var groupDto = {
+        id: 0,
+        name: null,
+        studentsIds: [],
+        paymentTypeId: 0,
+        isVIP: false
+    };
+
+    var paymentTypes = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('type'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '/Api/Payments?query=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+
+    $('#js-paymentTypes').typeahead({
+        minLenght: 3,
+        highlight: true
+    }, {
+            name: 'paymentType',
+            display: 'type',
+            source: paymentTypes
+        }).on("typeahead:select", function (e, paymentType) {
+            groupDto.paymentTypeId = paymentType.id;
+        });
+
+
+    var students = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
             url: '/Api/Students?query=%QUERY',
@@ -30,10 +58,19 @@ $(document).ready(function () {
         }
     });
 
-    $('#remote .typeahead').typeahead(null, {
-        name: 'studentName',
-        display: 'Name',
-        source: studentsName
-    });
+    $('#js-student').typeahead({
+        minLenght: 3,
+        highlight: true
+    },
+        {
+            name: 'student',
+            display: 'name',
+            source: students
+        }).on("typeahead:select", function (e, student) {
 
+            $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName + "</li>");
+            $("#js-student").typeahead("val", "");
+
+            groupDto.studentsIds.push(student.id);
+        });
 });

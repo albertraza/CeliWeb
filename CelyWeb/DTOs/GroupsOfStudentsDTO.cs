@@ -18,12 +18,12 @@ namespace CelyWeb.DTOs
         [Required]
         public List<int> StudentsIds { get; set; }
 
-        public List<IStudent> Students { get; set; }
+        public List<StudentsDTO> Students { get; set; }
 
         [Required]
         public int PaymentTypeId { get; set; }
 
-        public IPaymentTypes PaymentType { get; set; }
+        public PaymentTypesDTO PaymentType { get; set; }
 
         public bool IsVIP { get; set; }
 
