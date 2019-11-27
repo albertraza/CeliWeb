@@ -19,7 +19,7 @@ namespace CelyWeb.Controllers
 
         public ActionResult New()
         {
-            return View("GroupsForm", new GroupsViewModel { PaymentTypes = new PaymentTypes().GetPaymentTypes() });
+            return View("GroupsForm");
         }
     }
 }
