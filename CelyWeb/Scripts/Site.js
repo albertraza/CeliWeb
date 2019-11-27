@@ -99,6 +99,11 @@ $(document).ready(function () {
             .done(function (data) {
 
                 console.log("success " + data);
+                $("#js-students").empty();
+                $("#js-name").val("");
+                $("#js-paymentType").val("");
+
+                groupDto.studentsIds = [];
 
             }).fail(function (e) {
                 console.log(e);
