@@ -34,7 +34,7 @@ namespace CelyWeb.Controllers.Api
 
         public IHttpActionResult GetAllGroups()
         {
-            return Ok(new Student().GetStudents());
+            return Ok(new GroupsOfStudentsDTO().GetGroups());
         }
     }
 }

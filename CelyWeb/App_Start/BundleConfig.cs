@@ -31,9 +31,6 @@ namespace CelyWeb
                       "~/Content/bootstrap.css",
                       "~/Content/typeahead.css",
                       "~/Content/site.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/site").Include(
-                "~/Scripts/site.js"));
         }
     }
 }

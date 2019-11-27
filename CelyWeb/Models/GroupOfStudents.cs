@@ -53,7 +53,7 @@ namespace CelyWeb.Models
                 var student = _context.Students.Single(s => s.Id == studentId);
                 student.GroupOfStudentId = groupOfStudents.Id;
 
-                new Student().Update(student, null);
+                new Student().Update(student);
             }
 
             return groupOfStudents;

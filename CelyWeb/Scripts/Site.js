@@ -18,15 +18,15 @@ function readURL(input) {
 
 }
 
-$(document).ready(function () {
+var groupDto = {
+    id: 0,
+    name: null,
+    studentsIds: [],
+    paymentTypeId: 0,
+    isVIP: false
+};
 
-    var groupDto = {
-        id: 0,
-        name: null,
-        studentsIds: [],
-        paymentTypeId: 0,
-        isVIP: false
-    };
+$(document).ready(function () {
 
     var paymentTypes = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('type'),
@@ -49,6 +49,10 @@ $(document).ready(function () {
         });
 
 
+});
+
+$(document).ready(function () {
+
     var students = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -68,11 +72,37 @@ $(document).ready(function () {
             source: students
         }).on("typeahead:select", function (e, student) {
 
-            e.preventDefault();
-
             $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName + "</li>");
             $("#js-student").typeahead("val", "");
 
             groupDto.studentsIds.push(student.id);
         });
+
+    $("#newGroup").submit(function (e) {
+
+        e.preventDefault();
+
+        groupDto.name = $("#js-name").val();
+
+        if ($("#js-isVIP").is(":checked")) {
+            groupDto.isVIP = true;
+        }
+        else {
+            groupDto.isVIP = false;
+        }
+
+        $.ajax({
+            url: "/Api/Groups",
+            method: "post",
+            data: groupDto
+        })
+            .done(function (data) {
+
+                console.log("success " + data);
+
+            }).fail(function (e) {
+                console.log(e.getAllResponseHeaders);
+            });
+
+    });
 });
