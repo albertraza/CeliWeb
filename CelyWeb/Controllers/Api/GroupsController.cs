@@ -21,15 +21,18 @@ namespace CelyWeb.Controllers.Api
 
             if (groupDTO.isRegistered)
             {
-                var group = new GroupOfStudents().Register(Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(groupDTO));
-
-                foreach (var student in group.Students)
+                foreach (var studentId in groupDTO.StudentsIds)
                 {
+                    var student = new Student().GetStudent(studentId);
+
                     if (student.GroupOfStudentId != null)
                         return BadRequest(string.Format("El Estudiante ({0} {1}) ya esta en una Familia.", student.Name, student.LastName));
                 }
 
+                if (new PaymentTypes().GetPaymentType(groupDTO.PaymentTypeId).IsForGroups)
+                    return BadRequest("El Metodo de pago no es para Familias");
 
+                var group = new GroupOfStudents().Register(Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(groupDTO));
 
                 Mapper.Map((GroupOfStudents)group, groupDTO);
                 return Created(new Uri(Request.RequestUri + "/" + group.Id), groupDTO);
