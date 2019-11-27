@@ -101,7 +101,7 @@ $(document).ready(function () {
                 console.log("success " + data);
 
             }).fail(function (e) {
-                console.log(e.getAllResponseHeaders);
+                console.log(e);
             });
 
     });

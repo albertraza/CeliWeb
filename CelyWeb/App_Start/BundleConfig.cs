@@ -15,8 +15,7 @@ namespace CelyWeb
                  "~/Scripts/bootstrap.js",
                   "~/Scripts/site.js",
                   "~/Scripts/jquery.dataTables.js",
-                  "~/Scripts/typeahead.bundle.js",
-                  "~/Scripts/typeahead.jquery.js"
+                  "~/Scripts/typeahead.bundle.js"
                 ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

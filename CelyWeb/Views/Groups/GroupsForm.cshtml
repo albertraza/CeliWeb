@@ -32,17 +32,13 @@
                     <input id="js-student" type="text" name="student" class="form-control" />
                 </div>
             </div>
-            <ul id="js-students" class="list-group"></ul>
+
+            <button class="btn btn-primary">Guardar</button>
 
         </div>
         <div class="col-sm-5">
-            
+            <h3>Estudiantes</h3>
+            <ul id="js-students" class="list-group"></ul>
         </div>
-
-        <button class="btn btn-primary">Guardar</button>
     </form>
 </div>
-
-@section scripts{
-    @Scripts.Render("~/bundles/javascripts")
-    }
