@@ -18,6 +18,9 @@ function readURL(input) {
 
 }
 
+
+// # Groups Section
+
 var groupDto = {
     id: 0,
     name: null,
@@ -25,6 +28,8 @@ var groupDto = {
     paymentTypeId: 0,
     isVIP: false
 };
+var paymentTypeSelected;
+var studentSelected;
 
 $(document).ready(function () {
 
@@ -46,6 +51,7 @@ $(document).ready(function () {
             source: paymentTypes
         }).on("typeahead:select", function (e, paymentType) {
             groupDto.paymentTypeId = paymentType.id;
+            paymentTypeSelected = paymentType;
         });
 
 
@@ -112,3 +118,5 @@ $(document).ready(function () {
 
     });
 });
+
+// # End Group Section

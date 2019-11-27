@@ -19,9 +19,18 @@ namespace CelyWeb.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if (groupDTO.Id == 0)
+            if (groupDTO.isRegistered)
             {
                 var group = new GroupOfStudents().Register(Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(groupDTO));
+
+                foreach (var student in group.Students)
+                {
+                    if (student.GroupOfStudentId != null)
+                        return BadRequest(string.Format("El Estudiante ({0} {1}) ya esta en una Familia.", student.Name, student.LastName));
+                }
+
+
+
                 Mapper.Map((GroupOfStudents)group, groupDTO);
                 return Created(new Uri(Request.RequestUri + "/" + group.Id), groupDTO);
             }

@@ -27,6 +27,14 @@ namespace CelyWeb.DTOs
 
         public bool IsVIP { get; set; }
 
+        public bool isRegistered
+        { get
+            {
+                if (Id != 0)
+                    return true;
+                return false;
+         } }
+
 
         public GroupsOfStudentsDTO Register(GroupsOfStudentsDTO group)
         {
