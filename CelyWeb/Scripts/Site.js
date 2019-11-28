@@ -28,8 +28,8 @@ var groupDto = {
     paymentTypeId: 0,
     isVIP: false
 };
-var paymentTypeSelected;
-var studentSelected;
+var paymentTypeSelected = { id: 0, isForGroups: false};
+var studentsSelected = [];
 
 $(document).ready(function () {
 
@@ -78,44 +78,120 @@ $(document).ready(function () {
             source: students
         }).on("typeahead:select", function (e, student) {
 
-            $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName + "</li>");
-            $("#js-student").typeahead("val", "");
+            if (student.groupOfStudentId !== 0) {
+                $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName + "</li>");
+                $("#js-student").typeahead("val", "");
 
-            groupDto.studentsIds.push(student.id);
+                groupDto.studentsIds.push(student.id);
+
+                studentsSelected.push(student);
+            }
         });
 
-    $("#newGroup").submit(function (e) {
 
-        e.preventDefault();
+        // start custom validation methods
 
-        groupDto.name = $("#js-name").val();
+    $.validator.addMethod("validPaymentType", function () {
 
-        if ($("#js-isVIP").is(":checked")) {
-            groupDto.isVIP = true;
+        if (paymentTypeSelected.id && paymentTypeSelected.id !== 0) {
+            return true;
         }
         else {
-            groupDto.isVIP = false;
+            return false;
+        }
+    }, "Selecciona un Tipo de Pago Valido.");
+
+    $.validator.addMethod("isForGroupsValidator", function () {
+
+        return paymentTypeSelected.isForGroups;
+
+    }, "El Tipo de pago debe ser familiar.");
+
+    $.validator.addMethod("isVIPValidator", function () {
+        if ($("#js-isVIP").is(":checked")) {
+            if (paymentTypeSelected.isVIP) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return true;
+        }
+    }, "Debes seleccionar un metodo de pago tipo VIP");
+
+
+    $.validator.addMethod("isVIPCheckedValidator", function () {
+        if (!$("js-isVIP").is(":checked")) {
+            if (paymentTypeSelected.isVIP) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        else {
+            return true;
+        }
+    }, "La familia debe ser VIP para aceptar el Tipo de pago.");
+
+    $.validator.addMethod("validStudent", function () {
+        if (groupDto.studentsIds.length != 0) {
+            return true;
+        }
+        else {
+            return false;
         }
 
-        $.ajax({
-            url: "/Api/Groups",
-            method: "post",
-            data: groupDto
-        })
-            .done(function (data) {
+    }, "Selecciona un Estudiante Valido.");
 
-                toastr.success("Familia añadida!");
+    $.validator.addMethod("studentGroupValidation", function () {
+        for (var i = 0; i < studentsSelected.length, i++;) {
+            if (studentsSelected[i].groupOfStudentId !== 0 || studentsSelected[i].groupOfStudentId !== null) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    }, "El estudiante seleccionado ya pertenece a una familia.");
 
-                $("#js-students").empty();
-                $("#js-name").val("");
-                $("#js-paymentTypes").val("");
+    // end custom validation methods
 
-                groupDto.studentsIds = [];
+    $("#newGroup").validate({
+        submitHandler: function () {
 
-            }).fail(function (e) {
-                toastr.error("Ha ocurrido un error.");
-            });
+            groupDto.name = $("#js-name").val();
 
+            if ($("#js-isVIP").is(":checked")) {
+                groupDto.isVIP = true;
+            }
+            else {
+                groupDto.isVIP = false;
+            }
+
+
+            // API communications
+            $.ajax({
+                url: "/Api/Groups",
+                method: "post",
+                data: groupDto
+            })
+                .done(function (data) {
+
+                    toastr.success("Familia añadida!");
+
+                    $("#js-students").empty();
+                    $("#js-name").val("");
+                    $("#js-paymentTypes").val("");
+
+                    groupDto.studentsIds = [];
+
+                }).fail(function (e) {
+                    toastr.error("Ha ocurrido un error.");
+                });
+        }
     });
 });
 

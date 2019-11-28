@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.Designer.cs">
       <DependentUpon>201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911282149042_empty.cs" />
+    <Compile Include="Migrations\201911282149042_empty.Designer.cs">
+      <DependentUpon>201911282149042_empty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomValidations\VIPRequired.cs" />
@@ -395,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.resx">
       <DependentUpon>201911201635107_AddIsVIPAndIsForGroupsToPaymentTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911282149042_empty.resx">
+      <DependentUpon>201911282149042_empty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

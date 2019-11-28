@@ -27,7 +27,7 @@ namespace CelyWeb.DTOs
 
         public bool IsVIP { get; set; }
 
-        public bool isRegistered
+        public bool IsRegistered
         { get
             {
                 if (Id != 0)

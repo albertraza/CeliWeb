@@ -64,10 +64,10 @@ input {
     margin-top: 10px;
 }
 
-.input-validation-error {
+.input-validation-error, .form-control.error {
     border: 2px solid red;
 }
 
-.field-validation-error{
+.field-validation-error, label.error{
     color: red;
 }

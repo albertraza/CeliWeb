@@ -19,7 +19,7 @@ namespace CelyWeb.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if (groupDTO.isRegistered)
+            if (groupDTO.IsRegistered)
             {
                 foreach (var studentId in groupDTO.StudentsIds)
                 {
