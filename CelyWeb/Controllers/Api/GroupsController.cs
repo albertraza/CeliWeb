@@ -19,7 +19,7 @@ namespace CelyWeb.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            if (groupDTO.IsRegistered)
+            if (!groupDTO.IsRegistered)
             {
                 foreach (var studentId in groupDTO.StudentsIds)
                 {
@@ -29,7 +29,7 @@ namespace CelyWeb.Controllers.Api
                         return BadRequest(string.Format("El Estudiante ({0} {1}) ya esta en una Familia.", student.Name, student.LastName));
                 }
 
-                if (new PaymentTypes().GetPaymentType(groupDTO.PaymentTypeId).IsForGroups)
+                if (!new PaymentTypes().GetPaymentType(groupDTO.PaymentTypeId).IsForGroups)
                     return BadRequest("El Metodo de pago no es para Familias");
 
                 var group = new GroupOfStudents().Register(Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(groupDTO));

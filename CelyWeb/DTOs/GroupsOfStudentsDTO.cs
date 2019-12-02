@@ -30,8 +30,9 @@ namespace CelyWeb.DTOs
         public bool IsRegistered
         { get
             {
-                if (Id != 0)
-                    return true;
+                if (this != null)
+                    if (Id != 0)
+                        return true;
                 return false;
          } }
 
