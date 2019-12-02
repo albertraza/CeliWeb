@@ -352,6 +352,7 @@
     <Content Include="Views\Students\Details.cshtml" />
     <Content Include="Views\Payments\Index.cshtml" />
     <Content Include="Views\Groups\GroupsForm.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
