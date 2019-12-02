@@ -88,8 +88,6 @@ $(document).ready(function () {
                 studentSelected = student;
             }
         });
-
-
     // start custom validation methods
 
     $.validator.addMethod("validPaymentType", function () {
