@@ -18,7 +18,6 @@ function readURL(input) {
 
 }
 
-
 // # Groups Section
 
 var groupDto = {
@@ -30,6 +29,7 @@ var groupDto = {
 };
 var paymentTypeSelected = { id: 0, isForGroups: false};
 var studentsSelected = [];
+var studentSelected = {};
 
 $(document).ready(function () {
 
@@ -85,11 +85,12 @@ $(document).ready(function () {
                 groupDto.studentsIds.push(student.id);
 
                 studentsSelected.push(student);
+                studentSelected = student;
             }
         });
 
 
-        // start custom validation methods
+    // start custom validation methods
 
     $.validator.addMethod("validPaymentType", function () {
 
@@ -123,16 +124,16 @@ $(document).ready(function () {
 
 
     $.validator.addMethod("isVIPCheckedValidator", function () {
-        if (!$("js-isVIP").is(":checked")) {
+        if ($("#js-isVIP").is(":checked")) {
+            return true;
+        }
+        else {
             if (paymentTypeSelected.isVIP) {
                 return false;
             }
             else {
                 return true;
             }
-        }
-        else {
-            return true;
         }
     }, "La familia debe ser VIP para aceptar el Tipo de pago.");
 
@@ -147,15 +148,13 @@ $(document).ready(function () {
     }, "Selecciona un Estudiante Valido.");
 
     $.validator.addMethod("studentGroupValidation", function () {
-        for (var i = 0; i < studentsSelected.length, i++;) {
-            if (studentsSelected[i].groupOfStudentId !== 0 || studentsSelected[i].groupOfStudentId !== null) {
-                return false;
-            }
-            else {
-                return true;
-            }
+        if (studentSelected.groupOfStudentId && studentSelected.groupOfStudentId !== 0) {
+            return false;
         }
-    }, "El estudiante seleccionado ya pertenece a una familia.");
+        else {
+            return true;
+        }
+    }, "El estudiante " + studentSelected.name + " ya pertenece a una familia.");
 
     // end custom validation methods
 
@@ -194,5 +193,4 @@ $(document).ready(function () {
         }
     });
 });
-
 // # End Group Section
