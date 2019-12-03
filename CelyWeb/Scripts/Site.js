@@ -191,4 +191,27 @@ $(document).ready(function () {
         }
     });
 });
+
+
+$(document).ready(function () {
+
+    $("#js-listGroups").DataTable({
+        ajax: {
+            url: "/Api/Groups",
+            dataSrc: ""
+        },
+        columns: [
+            {
+                data: "name",
+                render: function (data, type, group) {
+                    return "<a data-group-id ='" + group.id + "' id='js-group' class='btn btn-link'>" + data + "</a>"; 
+                }
+            }
+        ]
+
+    });
+
+});
+
+
 // # End Group Section
