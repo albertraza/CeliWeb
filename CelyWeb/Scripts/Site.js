@@ -193,6 +193,11 @@ $(document).ready(function () {
 });
 
 
+// # End Group Section
+
+
+// Index Group Table
+
 $(document).ready(function () {
 
     $("#js-listGroups").DataTable({
@@ -201,7 +206,7 @@ $(document).ready(function () {
             dataSrc: ""
         },
         columns: [
-            {
+            { 
                 data: "name",
                 render: function (data, type, group) {
                     return "<a data-group-id ='" + group.id + "' id='js-group' class='btn btn-link'>" + data + "</a>"; 
@@ -213,5 +218,16 @@ $(document).ready(function () {
 
 });
 
+// End Index Group Table
 
-// # End Group Section
+// Details Groups
+
+var group = {};
+
+$(document).ready(function () {
+
+    //$.ajax({
+    //    url: "/Api/Groups/" + 
+    //});
+
+});
