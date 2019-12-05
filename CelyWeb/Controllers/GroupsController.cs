@@ -21,5 +21,10 @@ namespace CelyWeb.Controllers
         {
             return View("GroupsForm");
         }
+
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
     }
 }

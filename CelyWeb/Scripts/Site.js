@@ -79,7 +79,8 @@ $(document).ready(function () {
         }).on("typeahead:select", function (e, student) {
 
             if (student.groupOfStudentId !== 0) {
-                $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName + "</li>");
+                $("#js-students").append("<li class='list-group-item'>" +
+                    student.name + " " + student.lastName + "</li>");
                 $("#js-student").typeahead("val", "");
 
                 groupDto.studentsIds.push(student.id);
@@ -199,7 +200,6 @@ $(document).ready(function () {
 // Index Group Table
 
 $(document).ready(function () {
-
     $("#js-listGroups").DataTable({
         ajax: {
             url: "/Api/Groups",
@@ -209,13 +209,17 @@ $(document).ready(function () {
             { 
                 data: "name",
                 render: function (data, type, group) {
-                    return "<a data-group-id ='" + group.id + "' id='js-group' class='btn btn-link'>" + data + "</a>"; 
+                    return
+                    "<button data-group-id ='" +
+                        group.id + "' id='js-group' class='btn btn-link'>" + data + "</button>"; 
                 }
             }
         ]
-
     });
-
+    $("#js-listGroups").on("click", "#js-group", function () {
+        var button = $(this);
+        window.location.assign("/Groups/Details/" + button.attr("data-group-id"));
+    });
 });
 
 // End Index Group Table

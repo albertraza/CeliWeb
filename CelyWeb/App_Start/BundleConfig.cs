@@ -14,6 +14,7 @@ namespace CelyWeb
                 "~/Scripts/jquery.validate*",
                  "~/Scripts/bootstrap.js",
                   "~/Scripts/site.js",
+                  "~/Scripts/bootbox.js",
                   "~/Scripts/DataTables/jquery.dataTables.js",
                   "~/Scripts/toastr.js",
                   "~/Scripts/typeahead.bundle.js"
