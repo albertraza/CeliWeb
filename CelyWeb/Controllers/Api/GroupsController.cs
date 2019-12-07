@@ -25,7 +25,7 @@ namespace CelyWeb.Controllers.Api
                 {
                     var student = new Student().GetStudent(studentId);
 
-                    if (student.GroupOfStudentId != null)
+                    if (student.GroupOfStudentId != 0)
                         return BadRequest(string.Format("El Estudiante ({0} {1}) ya esta en una Familia.", student.Name, student.LastName));
                 }
 

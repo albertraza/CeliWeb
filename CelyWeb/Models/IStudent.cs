@@ -38,7 +38,7 @@ namespace CelyWeb.Models
 
         bool IsVIP { get; set; }
 
-        int? GroupOfStudentId { get; set; }
+        int GroupOfStudentId { get; set; }
 
         [Required]
         bool IsActive { get; set; }

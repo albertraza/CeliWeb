@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201911282149042_empty.Designer.cs">
       <DependentUpon>201911282149042_empty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912052210571_ChangedNullableToNonNullableInt.cs" />
+    <Compile Include="Migrations\201912052210571_ChangedNullableToNonNullableInt.Designer.cs">
+      <DependentUpon>201912052210571_ChangedNullableToNonNullableInt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomValidations\VIPRequired.cs" />
@@ -642,6 +646,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911282149042_empty.resx">
       <DependentUpon>201911282149042_empty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912052210571_ChangedNullableToNonNullableInt.resx">
+      <DependentUpon>201912052210571_ChangedNullableToNonNullableInt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -69,7 +69,7 @@ $(document).ready(function () {
     });
 
     $('#js-student').typeahead({
-        minLenght: 3,
+        minLenght: 1,
         highlight: true
     },
         {
@@ -206,12 +206,11 @@ $(document).ready(function () {
             dataSrc: ""
         },
         columns: [
-            { 
+            {
                 data: "name",
                 render: function (data, type, group) {
-                    return
-                    "<button data-group-id ='" +
-                        group.id + "' id='js-group' class='btn btn-link'>" + data + "</button>"; 
+                    return "<button id='js-group' class='btn btn-link' data-group-id=" +
+                        group.id + ">" + data + "</button>";
                 }
             }
         ]
@@ -219,6 +218,7 @@ $(document).ready(function () {
     $("#js-listGroups").on("click", "#js-group", function () {
         var button = $(this);
         window.location.assign("/Groups/Details/" + button.attr("data-group-id"));
+        window.localStorage.setItem("groupID", button.attr("data-group-id"));
     });
 });
 
@@ -226,12 +226,42 @@ $(document).ready(function () {
 
 // Details Groups
 
-var group = {};
-
 $(document).ready(function () {
 
-    //$.ajax({
-    //    url: "/Api/Groups/" + 
-    //});
+    var studentsInGroup;
+    var groupId = window.localStorage.getItem("groupID");
 
+    $.ajax({
+        url: "/Api/Students?query=" + groupId,
+        method: "get",
+        success: function (response) {
+            studentsInGroup = response;
+        }
+    });
+
+    $("#js-studentsInGroup").DataTable({
+        ajax: {
+            url: "/Api/Students?query=" + groupId,
+            dataSrc: ""
+        },
+        columns: [
+            {
+                data: "name",
+                render: function (data, type, student) {
+                    return "<button class='btn btn-link' class='js-student' data-student-id=" +
+                        student.id + ">" + data + "</button>";
+                }
+            },
+            {
+                data: "lastName",
+                render: function (data, type, student) {
+                    return "<button class='btn btn-link' class='js-student' data-student-id=" +
+                        student.id + ">" + data + "</button>";
+                }
+            }
+        ]
+    });
+    $("#js-studentsInGroup").on("click", ".js-student", function () {
+        window.location.assign("/Students/Details/" + $(this).attr("data-student-id"));
+    });
 });
