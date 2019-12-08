@@ -246,22 +246,23 @@ $(document).ready(function () {
         },
         columns: [
             {
-                data: "name",
-                render: function (data, type, student) {
-                    return "<button class='btn btn-link' class='js-student' data-student-id=" +
-                        student.id + ">" + data + "</button>";
-                }
+                data: "name"
             },
             {
-                data: "lastName",
+                data: "lastName"
+            },
+            {
+                data: "id",
                 render: function (data, type, student) {
-                    return "<button class='btn btn-link' class='js-student' data-student-id=" +
-                        student.id + ">" + data + "</button>";
+                    return "<button class='btn btn-link'><span class='glyphicon glyphicon-pencil' id='js-student' data-student-id=" + data + " ></span></button>";
                 }
             }
         ]
     });
-    $("#js-studentsInGroup").on("click", ".js-student", function () {
-        window.location.assign("/Students/Details/" + $(this).attr("data-student-id"));
+    $("#js-studentsInGroup").on("click", "#js-student", function () {
+        var button = $(this);
+        window.location.assign("/Students/Details/" + button.attr("data-student-id"));
     });
 });
+
+// End Details Groups
