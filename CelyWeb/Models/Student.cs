@@ -145,6 +145,9 @@ namespace CelyWeb.Models
             studentInDb.SeccionId = student.SeccionId;
             studentInDb.GroupOfStudentId = student.GroupOfStudentId;
 
+            if (student.GroupOfStudentId != 0)
+                studentInDb.PaymentDate = student.PaymentDate;
+
             if(Photo != null)
             {
                 studentInDb.Photo = new byte[Photo.ContentLength];

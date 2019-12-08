@@ -53,6 +53,8 @@ namespace CelyWeb.Models
             {
                 var student = _context.Students.Single(s => s.Id == studentId);
                 student.GroupOfStudentId = groupOfStudents.Id;
+                student.PaymentTypeId = groupOfStudents.PaymentTypeId;
+                student.PaymentDate = DateTime.Today.AddDays(new PaymentTypes().GetPaymentType(groupOfStudents.PaymentTypeId).DaysToPay);
 
                 new Student().Update(student);
             }
