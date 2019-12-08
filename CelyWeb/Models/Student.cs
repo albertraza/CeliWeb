@@ -74,14 +74,45 @@ namespace CelyWeb.Models
             return true;
         }
 
-        public IStudent GetStudent(int id) => _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Single(s => s.Id == id);
+        public IStudent GetStudent(int id)
+        {
+           var student = _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Single(s => s.Id == id);
+
+            if(student.GroupOfStudentId != 0)
+            {
+                var group = (GroupOfStudents)new GroupOfStudents().GetGroup(GroupOfStudentId);
+                student.GroupOfStudents = group;
+            }
+
+            return student;
+        }
 
         public List<Student> GetStudents(string query = null)
         {
+            var students = new List<Student>();
             if (query != null)
-                return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Include(s => s.GroupOfStudents).Where(s => s.Name.Contains(query) || s.LastName.Contains(query) || s.GroupOfStudentId.ToString() == query).ToList();
+            {
+                students = _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Where(s => s.Name.Contains(query) || s.LastName.Contains(query) || s.GroupOfStudentId.ToString() == query).ToList();
+            }
+            else
+            {
+                students =_context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
 
-          return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
+            }
+
+            foreach (var student in students)
+            {
+                if (student.GroupOfStudentId != 0)
+                {
+                    var group = (GroupOfStudents)new GroupOfStudents().GetGroup(student.GroupOfStudentId);
+                    if (group == null)
+                        group = (GroupOfStudents)new GroupOfStudents().GetGroup(student.GroupOfStudentId);
+
+                    student.GroupOfStudents = group;
+                }
+            }
+
+            return students;
         }
 
         public IStudent Register(IStudent student, HttpPostedFileBase Photo)

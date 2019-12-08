@@ -39,7 +39,7 @@ namespace CelyWeb.Models
             throw new NotImplementedException();
         }
 
-        public IGroupOfStudents GetGroup(int id) => _context.GroupOfStudents.Single(g => g.Id == id);
+        public IGroupOfStudents GetGroup(int id) => _context.GroupOfStudents.SingleOrDefault(g => g.Id == id);
 
         public List<GroupOfStudents> GetGroupOfStudents() => _context.GroupOfStudents.ToList();
 
