@@ -43,7 +43,7 @@
             <li><b>Fecha Proximo Pago: </b>@Model.Student.PaymentDate.ToLongDateString()</li>
             <li><b>Cantidad de pago: </b>RD$@Model.Student.PaymentType.Amount</li>
 
-            @if (Model.Student.GroupOfStudentId != null)
+            @if (Model.Student.GroupOfStudents != null)
             {
                 <li><b>Familia: </b>@Model.Student.GroupOfStudents.Name</li>
             }

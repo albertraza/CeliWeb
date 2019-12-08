@@ -79,7 +79,7 @@ namespace CelyWeb.Models
         public List<Student> GetStudents(string query = null)
         {
             if (query != null)
-                return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Where(s => s.Name.Contains(query) || s.LastName.Contains(query) || s.GroupOfStudentId.ToString() == query).ToList();
+                return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Include(s => s.GroupOfStudents).Where(s => s.Name.Contains(query) || s.LastName.Contains(query) || s.GroupOfStudentId.ToString() == query).ToList();
 
           return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
         }

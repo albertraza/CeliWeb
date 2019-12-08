@@ -78,7 +78,7 @@ $(document).ready(function () {
             source: students
         }).on("typeahead:select", function (e, student) {
 
-            if (student.groupOfStudentId !== 0) {
+            if (student.groupOfStudentId === 0) {
                 $("#js-students").append("<li class='list-group-item'>" +
                     student.name + " " + student.lastName + "</li>");
                 $("#js-student").typeahead("val", "");
@@ -147,7 +147,7 @@ $(document).ready(function () {
     }, "Selecciona un Estudiante Valido.");
 
     $.validator.addMethod("studentGroupValidation", function () {
-        if (studentSelected.groupOfStudentId && studentSelected.groupOfStudentId !== 0) {
+        if (studentSelected.groupOfStudentId !== 0) {
             return false;
         }
         else {
