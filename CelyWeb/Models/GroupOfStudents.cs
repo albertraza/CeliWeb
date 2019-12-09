@@ -20,12 +20,12 @@ namespace CelyWeb.Models
         [Required]
         public List<int> StudentsIds { get; set; }
 
-        public List<IStudent> Students { get; set; }
+        public List<Student> Students { get; set; }
 
         [Required]
         public int PaymentTypeId { get; set; }
 
-        public IPaymentTypes PaymentType { get; set; }
+        public PaymentTypes PaymentType { get; set; }
 
         public bool IsVIP { get; set; }
 
@@ -39,8 +39,14 @@ namespace CelyWeb.Models
             throw new NotImplementedException();
         }
 
-        public IGroupOfStudents GetGroup(int id) => _context.GroupOfStudents.SingleOrDefault(g => g.Id == id);
+        public IGroupOfStudents GetGroup(int id)
+        {
+            var group = _context.GroupOfStudents.Include(g => g.PaymentType).SingleOrDefault(g => g.Id == id);
 
+            group.Students = new Student().GetStudents(group.Id.ToString());
+
+            return group;
+        }
         public List<GroupOfStudents> GetGroupOfStudents() => _context.GroupOfStudents.ToList();
 
         public IGroupOfStudents Register(IGroupOfStudents groupOfStudents)
@@ -62,11 +68,11 @@ namespace CelyWeb.Models
             return groupOfStudents;
         }
 
-        public IGroupOfStudents Update(IGroupOfStudents groupOfStudents)
+        public IGroupOfStudents Update(GroupOfStudents groupOfStudents)
         {
             var groupInDb = _context.GroupOfStudents.Single(g => g.Id == groupOfStudents.Id);
 
-            Mapper.Map((GroupOfStudents)groupOfStudents, groupInDb);
+            Mapper.Map(groupOfStudents, groupInDb);
 
             foreach (var student in groupOfStudents.Students)
             {

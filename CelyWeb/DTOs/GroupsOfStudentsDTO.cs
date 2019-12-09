@@ -55,5 +55,7 @@ namespace CelyWeb.DTOs
 
             return groupsToReturn;
         }
+
+        public GroupsOfStudentsDTO GetGroup(int id) => Mapper.Map<GroupOfStudents, GroupsOfStudentsDTO>((GroupOfStudents)new GroupOfStudents().GetGroup(id));
     }
 }

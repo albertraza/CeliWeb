@@ -247,6 +247,10 @@
     <Compile Include="Migrations\201912052210571_ChangedNullableToNonNullableInt.Designer.cs">
       <DependentUpon>201912052210571_ChangedNullableToNonNullableInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912082000067_UpdatedDependencyForIPaymentTypes.cs" />
+    <Compile Include="Migrations\201912082000067_UpdatedDependencyForIPaymentTypes.Designer.cs">
+      <DependentUpon>201912082000067_UpdatedDependencyForIPaymentTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomValidations\VIPRequired.cs" />
@@ -649,6 +653,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912052210571_ChangedNullableToNonNullableInt.resx">
       <DependentUpon>201912052210571_ChangedNullableToNonNullableInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912082000067_UpdatedDependencyForIPaymentTypes.resx">
+      <DependentUpon>201912082000067_UpdatedDependencyForIPaymentTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

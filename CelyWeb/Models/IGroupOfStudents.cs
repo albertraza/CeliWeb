@@ -16,19 +16,14 @@ namespace CelyWeb.Models
         [Required]
         List<int> StudentsIds { get; set; }
 
-        List<IStudent> Students { get; set; }
-
         [Required]
         int PaymentTypeId { get; set; }
-
-        IPaymentTypes PaymentType { get; set; }
 
         bool IsVIP { get; set; }
 
 
 
         IGroupOfStudents Register(IGroupOfStudents groupOfStudents);
-        IGroupOfStudents Update(IGroupOfStudents groupOfStudents);
         bool Delete(IGroupOfStudents groupOfStudents);
         IGroupOfStudents GetGroup(int id);
     }
