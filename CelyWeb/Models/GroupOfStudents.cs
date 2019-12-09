@@ -43,7 +43,8 @@ namespace CelyWeb.Models
         {
             var group = _context.GroupOfStudents.Include(g => g.PaymentType).SingleOrDefault(g => g.Id == id);
 
-            group.Students = new Student().GetStudents(group.Id.ToString());
+            if (group != null)
+                group.Students = new Student().GetStudents(group.Id.ToString());
 
             return group;
         }
