@@ -91,9 +91,15 @@ namespace CelyWeb.Models
         {
             //var students = new List<Student>();
             if (query != null)
-                return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Include(s => s.PaymentType).Where(s => s.Name.Contains(query) || s.LastName.Contains(query) || s.GroupOfStudentId.ToString() == query).ToList();
+                return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Where(s => s.Name.Contains(query) || s.LastName.Contains(query) || s.GroupOfStudentId.ToString() == query).ToList();
 
-             return _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).Include(s => s.PaymentType).ToList();
+             var students = _context.Students.Include(s => s.PaymentType).Include(s => s.Seccion).ToList();
+            foreach (var student in students)
+            {
+                student.GroupOfStudents = (GroupOfStudents)new GroupOfStudents().GetGroup(student.GroupOfStudentId);
+            }
+
+            return students;
         }
 
         public IStudent Register(IStudent student, HttpPostedFileBase Photo)
