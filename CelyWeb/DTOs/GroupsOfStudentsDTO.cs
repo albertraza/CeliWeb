@@ -10,6 +10,7 @@ namespace CelyWeb.DTOs
 {
     public class GroupsOfStudentsDTO
     {
+        #region contructor
         public int Id { get; set; }
 
         [Required]
@@ -35,13 +36,15 @@ namespace CelyWeb.DTOs
                         return true;
                 return false;
          } }
+        #endregion constructor
 
-
+        #region Register method
         public GroupsOfStudentsDTO Register(GroupsOfStudentsDTO group)
         {
             var newGroup = new GroupOfStudents().Register(Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(group));
             return Mapper.Map<GroupOfStudents, GroupsOfStudentsDTO>((GroupOfStudents)newGroup);
         }
+        #endregion Register method
 
         public List<GroupsOfStudentsDTO> GetGroups()
         {

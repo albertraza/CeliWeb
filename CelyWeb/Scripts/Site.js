@@ -237,11 +237,11 @@ $(document).ready(function () {
         success: function (response) {
 
             $("js-title").text(response.name);
-            $("#js-name").text(response.name);
+            $("#js-groupName").text(response.name);
             $("#js-paymentType").text(response.paymentType.type);
             $("#js-studentsAmount").text(response.students.length);
             $("#js-paymentAmount").text(response.paymentType.amount);
-            $("#js-paymentDate").text(response.students[1].paymentDate);
+            $("#js-paymentDate").text(new Date(response.students[0].paymentDate).toUTCString());
 
             $.each(response.students, function (index, student) {
                 $("#js-studentsInGroup").append("<li class='list-group-item'>" + student.name + " " + student.lastName +
@@ -260,3 +260,14 @@ $(document).ready(function () {
 });
 
 // End Details Groups
+
+
+// modify Groups
+
+$(document).ready(function () {
+
+
+
+});
+
+// end modify Groups

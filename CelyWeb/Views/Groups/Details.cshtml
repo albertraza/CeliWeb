@@ -11,11 +11,11 @@
     <div class="col-sm-6">
         <h3>Detalles</h3>
         <ul>
-            <li><b>Nombre: </b> <span id="js-name"></span></li>
+            <li><b>Nombre: </b> <span id="js-groupName"></span></li>
             <li><b>Cantidad de Estudiantes: </b> <span id="js-studentsAmount"></span></li>
         </ul>
         <h3>Pagos</h3>
-        
+
         <ul>
             <li><b>Tipo de Pago: </b> <span id="js-paymentType"></span> </li>
             <li><b>Cantidad a Pagar: </b> RD$<span id="js-paymentAmount"></span></li>
@@ -24,9 +24,10 @@
 
 
         <h3>Estudiantes</h3>
-        <ul id="js-studentsInGroup" class="list-group">
+        <ul id="js-studentsInGroup" class="list-group"></ul>
 
-        </ul>
+        <button class="btn btn-primary" id="js-modifyGroup">Modificar</button>
+        <button class="btn btn-primary" id="js-deleteGroup">Eliminar</button>
         <div class="col-sm-3">
 
         </div>
