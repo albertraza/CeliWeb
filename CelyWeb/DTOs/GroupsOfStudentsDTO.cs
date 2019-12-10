@@ -57,5 +57,16 @@ namespace CelyWeb.DTOs
         }
 
         public GroupsOfStudentsDTO GetGroup(int id) => Mapper.Map<GroupOfStudents, GroupsOfStudentsDTO>((GroupOfStudents)new GroupOfStudents().GetGroup(id));
+
+        public GroupsOfStudentsDTO Update(GroupsOfStudentsDTO groupOfStudents)
+        {
+            var group = Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(groupOfStudents);
+            return Mapper.Map<GroupOfStudents, GroupsOfStudentsDTO>((GroupOfStudents)new GroupOfStudents().Update(group));
+        }
+
+        public bool Delete(GroupsOfStudentsDTO groupOfStudents)
+        {
+            return new GroupOfStudents().Delete(Mapper.Map<GroupsOfStudentsDTO, GroupOfStudents>(groupOfStudents));
+        }
     }
 }

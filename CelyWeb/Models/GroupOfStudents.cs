@@ -36,7 +36,8 @@ namespace CelyWeb.Models
 
         public bool Delete(IGroupOfStudents groupOfStudents)
         {
-            throw new NotImplementedException();
+            _context.GroupOfStudents.Remove((GroupOfStudents)groupOfStudents);
+            return true;
         }
 
         public IGroupOfStudents GetGroup(int id)
@@ -77,6 +78,7 @@ namespace CelyWeb.Models
 
             foreach (var student in groupOfStudents.Students)
             {
+                student.PaymentTypeId = groupOfStudents.PaymentTypeId;
                 new Student().Update(student);
             }
 
