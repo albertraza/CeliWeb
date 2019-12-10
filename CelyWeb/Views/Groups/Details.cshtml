@@ -3,27 +3,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles de la Familia<span id="js-title"></span></h2>
 <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-3">
 
     </div>
-    <div class="col-sm-8">
-        <label><b>Nombre: </b><span id="js-name"></span></label>
-        <label><b>Tipo de Pago: </b><span id="js-paymentType"></span></label>
-        <label id="js-isVIP"></label>
+    <div class="col-sm-6">
+        <h3>Detalles</h3>
+        <ul>
+            <li><b>Nombre: </b> <span id="js-name"></span></li>
+            <li><b>Cantidad de Estudiantes: </b> <span id="js-studentsAmount"></span></li>
+        </ul>
+        <h3>Pagos</h3>
         
-        <table id="js-studentsInGroup" class="table table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Detalles <span class="glyphicon glyphicon-pencil"></span></th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <div class="col-sm-2">
+        <ul>
+            <li><b>Tipo de Pago: </b> <span id="js-paymentType"></span> </li>
+            <li><b>Cantidad a Pagar: </b> RD$<span id="js-paymentAmount"></span></li>
+            <li><b>Fecha del Proximo Pago: </b> <span id="js-paymentDate"></span></li>
+        </ul>
+
+
+        <h3>Estudiantes</h3>
+        <ul id="js-studentsInGroup" class="list-group">
+
+        </ul>
+        <div class="col-sm-3">
 
         </div>
     </div>

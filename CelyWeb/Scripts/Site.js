@@ -228,37 +228,31 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-    var studentsInGroup;
+    
     var groupId = window.localStorage.getItem("groupID");
 
     $.ajax({
-        url: "/Api/Students?query=" + groupId,
+        url: "/Api/Groups/" + groupId,
         method: "get",
         success: function (response) {
-            studentsInGroup = response;
+
+            $("js-title").text(response.name);
+            $("#js-name").text(response.name);
+            $("#js-paymentType").text(response.paymentType.type);
+            $("#js-studentsAmount").text(response.students.length);
+            $("#js-paymentAmount").text(response.paymentType.amount);
+            $("#js-paymentDate").text(response.students[1].paymentDate);
+
+            $.each(response.students, function (index, student) {
+                $("#js-studentsInGroup").append("<li class='list-group-item'>" + student.name + " " + student.lastName +
+                    "<button class='btn btn-link'><span id='js-student' data-student-id=" +
+                    student.id + " class='glyphicon glyphicon-pencil'></span></button></li>");
+            });
+
         }
     });
 
-    $("#js-studentsInGroup").DataTable({
-        ajax: {
-            url: "/Api/Students?query=" + groupId,
-            dataSrc: ""
-        },
-        columns: [
-            {
-                data: "name"
-            },
-            {
-                data: "lastName"
-            },
-            {
-                data: "id",
-                render: function (data, type, student) {
-                    return "<button class='btn btn-link'><span class='glyphicon glyphicon-pencil' id='js-student' data-student-id=" + data + " ></span></button>";
-                }
-            }
-        ]
-    });
+
     $("#js-studentsInGroup").on("click", "#js-student", function () {
         var button = $(this);
         window.location.assign("/Students/Details/" + button.attr("data-student-id"));
