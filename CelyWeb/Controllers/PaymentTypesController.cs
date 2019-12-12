@@ -28,7 +28,7 @@ namespace CelyWeb.Controllers
 
             viewModel.PaymentType = (PaymentTypes)new PaymentTypes().Register(viewModel.PaymentType);
 
-            return View("PaymentTypesForm", viewModel);
+            return View("Index", new PaymentTypesViewModel { PaymentTypes = new PaymentTypes().GetPaymentTypes() });
         }
 
         public ActionResult Details(int id)
