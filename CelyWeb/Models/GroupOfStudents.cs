@@ -83,6 +83,7 @@ namespace CelyWeb.Models
             foreach (var studentId in groupOfStudents.StudentsIds)
             {
                 var student = new Student().GetStudent(studentId);
+                student.GroupOfStudentId = groupInDb.Id;
                 student.PaymentTypeId = groupOfStudents.PaymentTypeId;
                 student.IsVIP = groupOfStudents.IsVIP;
                 new Student().Update(student);

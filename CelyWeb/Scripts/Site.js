@@ -26,7 +26,7 @@ var groupDto = {
     studentsIds: [],
     paymentTypeId: 0,
     isVIP: false,
-    get getName() { return this.name }
+    students: []
 };
 var paymentTypeSelected = { id: 0, isForGroups: false};
 var studentsSelected = [];
@@ -81,11 +81,13 @@ $("#js-groupForm").ready(function () {
 
             if (student.groupOfStudentId === 0) {
                 $("#js-students").append("<li class='list-group-item'>" +
-                    student.name + " " + student.lastName + "</li>");
+                    student.name + " " + student.lastName +
+                    "<a class='btn btn-link'><span data-student-id='" + student.id +
+                    "' class='glyphicon glyphicon-trash' id='js-deleteStudentFromGroup'></span></a></li> ");
                 $("#js-student").typeahead("val", "");
 
                 groupDto.studentsIds.push(student.id);
-
+                groupDto.students.push(student);
                 studentsSelected.push(student);
                 studentSelected = student;
             }
@@ -345,37 +347,48 @@ $("#js-groupForm").ready(function () {
 
                     $.each(response.students, function (index, student) {
                         $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName +
-                            "<button class='btn btn-link'><span id='js-deleteStudentFromGroup' data-student-id='" + student.id  + "'span class='glyphicon glyphicon-trash'></span ></button ></li > ");
+                            "<a class='btn btn-link'><span id='js-deleteStudentFromGroup' data-student-id='" + student.id  + "'span class='glyphicon glyphicon-trash'></span ></a></li > ");
                     });
                 }
+                window.localStorage.setItem("gId", 0);
             }
         });
     }
     else {
-        studentsSelected = {};
+        studentsSelected = [];
         paymentTypeSelected = {};
         studentsId = [];
         groupDto.id = 0;
     }
 
-    $("#js-students").on("click", "#js-deleteStudentsFromGroup", function () {
+    $("#js-students").on("click", "#js-deleteStudentFromGroup", function () {
         var button = $(this);
-        bootbox.confirm("Esta seguro que desea remover el estudiante?", function (resutl) {
+        bootbox.confirm("Esta seguro que desea remover el estudiante?", function (result) {
+
+            
             if (result) {
                 $.ajax({
                     url: "/Api/Students/" + button.attr("data-student-id"),
                     method: "get",
                     success: function (studentResponse) {
+                        
+                        var studentToRemove = groupDto.students.indexOf(studentResponse);
+                        groupDto.students.splice(studentToRemove, 1);
+                        studentToRemove = studentsSelected.indexOf(studentResponse);
+                        studentsSelected.splice(studentToRemove, 1);
+                        studentToRemove = groupDto.studentsIds.indexOf(studentResponse.id);
+                        groupDto.studentsIds.splice(studentToRemove, 1);
+
                         studentResponse.groupOfStudentId = 0;
-                        studentResponse.paymentTypeId = 0;
-                        studentResponse.isVIP = false;
 
                         $.ajax({
                             url: "/Api/Students",
                             method: "put",
                             data: studentResponse,
                             success: function (response, status, xhr) {
-                                toastr.success("El Estudiante Fue removido de la familia.");
+                                toastr.success("El Estudiante Fue removido.");
+                                
+                                button.parents("li").remove();
                             },
                             error: function (e) {
                                 toastr.error("Ha ocurrido un error.");
