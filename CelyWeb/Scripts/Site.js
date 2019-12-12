@@ -359,6 +359,8 @@ $("#js-groupForm").ready(function () {
         paymentTypeSelected = {};
         studentsId = [];
         groupDto.id = 0;
+        groupDto.students = [];
+        groupDto.studentsIds = [];
     }
 
     $("#js-students").on("click", "#js-deleteStudentFromGroup", function () {
