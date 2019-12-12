@@ -345,7 +345,7 @@ $("#js-groupForm").ready(function () {
 
                     $.each(response.students, function (index, student) {
                         $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName +
-                            "<button class='btn btn-link'><span class='glyphicon glyphicon-trash'></span ></button ></li > ");
+                            "<button class='btn btn-link'><span id='js-deleteStudentFromGroup' data-student-id='" + student.id  + "'span class='glyphicon glyphicon-trash'></span ></button ></li > ");
                     });
                 }
             }
@@ -357,6 +357,39 @@ $("#js-groupForm").ready(function () {
         studentsId = [];
         groupDto.id = 0;
     }
+
+    $("#js-students").on("click", "#js-deleteStudentsFromGroup", function () {
+        var button = $(this);
+        bootbox.confirm("Esta seguro que desea remover el estudiante?", function (resutl) {
+            if (result) {
+                $.ajax({
+                    url: "/Api/Students/" + button.attr("data-student-id"),
+                    method: "get",
+                    success: function (studentResponse) {
+                        studentResponse.groupOfStudentId = 0;
+                        studentResponse.paymentTypeId = 0;
+                        studentResponse.isVIP = false;
+
+                        $.ajax({
+                            url: "/Api/Students",
+                            method: "put",
+                            data: studentResponse,
+                            success: function (response, status, xhr) {
+                                toastr.success("El Estudiante Fue removido de la familia.");
+                            },
+                            error: function (e) {
+                                toastr.error("Ha ocurrido un error.");
+                            }
+                        });
+                    },
+                    error: function () {
+                        toastr.error("Ha ocurrido un error al buscar el estudiante");
+                    }
+                });
+            }
+        });
+    });
+
 
 });
 

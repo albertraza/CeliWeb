@@ -10,9 +10,14 @@ namespace CelyWeb.Controllers.Api
 {
     public class StudentsController : ApiController
     {
-        public IHttpActionResult GetStudents(string query = null)
+        public IHttpActionResult GetStudents(string query = null) => Ok(new StudentsDTO().GetStudents(query));
+
+        public IHttpActionResult GetStudent(int id)
         {
-            return Ok(new StudentsDTO().GetStudents(query));
+            var student = new StudentsDTO().GetStudent(id);
+            if (student == null)
+                NotFound();
+            return Ok(student);
         }
 
         [HttpPut]
