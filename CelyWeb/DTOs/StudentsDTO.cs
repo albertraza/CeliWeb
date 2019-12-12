@@ -65,5 +65,7 @@ namespace CelyWeb.DTOs
 
             return studentsDTO;
         }
+
+        public StudentsDTO Update(StudentsDTO student) => Mapper.Map<Student, StudentsDTO>((Student)new Student().Update(Mapper.Map<StudentsDTO, Student>(student)));
     }
 }

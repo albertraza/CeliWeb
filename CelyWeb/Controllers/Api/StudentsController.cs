@@ -14,5 +14,14 @@ namespace CelyWeb.Controllers.Api
         {
             return Ok(new StudentsDTO().GetStudents(query));
         }
+
+        [HttpPut]
+        public IHttpActionResult Update(StudentsDTO student)
+        {
+            if (student == null)
+                NotFound();
+
+            return Ok(new StudentsDTO().Update(student));
+        }
     }
 }
