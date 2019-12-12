@@ -194,7 +194,9 @@ $("#js-groupForm").ready(function () {
                             $("#js-name").val("");
                             $("#js-paymentTypes").val("");
 
+                            paymentTypeSelected = {};
                             groupDto.studentsIds = [];
+                            studentsId = [];
 
                         }).fail(function (e) {
                             toastr.error("Ha ocurrido un error.");
@@ -209,6 +211,17 @@ $("#js-groupForm").ready(function () {
                         data: groupDto,
                         success: function (response, status, xhr) {
                             toastr.success("Familia Actualizada");
+
+                            window.localStorage.setItem("gId", 0);
+                            $("#js-students").empty();
+                            $("#js-name").val("");
+                            $("#js-paymentTypes").val("");
+
+                            paymentTypeSelected = {};
+                            groupDto.studentsIds = [];
+                            groupDto.id = 0;
+                            studentsId = [];
+
                         },
                         error: function (e) {
                             toastr.error("Ha ocurrido un error");
@@ -334,14 +347,15 @@ $("#js-groupForm").ready(function () {
                         $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName +
                             "<button class='btn btn-link'><span class='glyphicon glyphicon-trash'></span ></button ></li > ");
                     });
-                    window.localStorage.setItem("gId", 0);
                 }
             }
         });
     }
     else {
-        studentsSelected = [];
+        studentsSelected = {};
         paymentTypeSelected = {};
+        studentsId = [];
+        groupDto.id = 0;
     }
 
 });
