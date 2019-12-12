@@ -62,6 +62,7 @@ namespace CelyWeb.Models
                 var student = _context.Students.Single(s => s.Id == studentId);
                 student.GroupOfStudentId = groupOfStudents.Id;
                 student.PaymentTypeId = groupOfStudents.PaymentTypeId;
+                student.IsVIP = groupOfStudents.IsVIP;
                 student.PaymentDate = DateTime.Today.AddDays(new PaymentTypes().GetPaymentType(groupOfStudents.PaymentTypeId).DaysToPay);
 
                 new Student().Update(student);
@@ -77,11 +78,13 @@ namespace CelyWeb.Models
             groupInDb.Name = groupOfStudents.Name;
             groupInDb.PaymentTypeId = groupOfStudents.PaymentTypeId;
             groupInDb.StudentsIds = groupOfStudents.StudentsIds;
+            groupInDb.IsVIP = groupOfStudents.IsVIP;
 
             foreach (var studentId in groupOfStudents.StudentsIds)
             {
                 var student = new Student().GetStudent(studentId);
                 student.PaymentTypeId = groupOfStudents.PaymentTypeId;
+                student.IsVIP = groupOfStudents.IsVIP;
                 new Student().Update(student);
             }
 
