@@ -74,10 +74,13 @@ namespace CelyWeb.Models
         {
             var groupInDb = _context.GroupOfStudents.Single(g => g.Id == groupOfStudents.Id);
 
-            Mapper.Map(groupOfStudents, groupInDb);
+            groupInDb.Name = groupOfStudents.Name;
+            groupInDb.PaymentTypeId = groupOfStudents.PaymentTypeId;
+            groupInDb.StudentsIds = groupOfStudents.StudentsIds;
 
-            foreach (var student in groupOfStudents.Students)
+            foreach (var studentId in groupOfStudents.StudentsIds)
             {
+                var student = new Student().GetStudent(studentId);
                 student.PaymentTypeId = groupOfStudents.PaymentTypeId;
                 new Student().Update(student);
             }

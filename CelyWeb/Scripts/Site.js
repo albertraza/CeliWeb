@@ -25,13 +25,14 @@ var groupDto = {
     name: null,
     studentsIds: [],
     paymentTypeId: 0,
-    isVIP: false
+    isVIP: false,
+    get getName() { return this.name }
 };
 var paymentTypeSelected = { id: 0, isForGroups: false};
 var studentsSelected = [];
 var studentSelected = {};
 
-$(document).ready(function () {
+$("#js-groupForm").ready(function () {
 
     var paymentTypes = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('type'),
@@ -57,7 +58,7 @@ $(document).ready(function () {
 
 });
 
-$(document).ready(function () {
+$("#js-groupForm").ready(function () {
 
     var students = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -147,50 +148,77 @@ $(document).ready(function () {
     }, "Selecciona un Estudiante Valido.");
 
     $.validator.addMethod("studentGroupValidation", function () {
-        if (studentSelected.groupOfStudentId !== 0) {
-            return false;
-        }
-        else {
+
+        if (groupDto.id !== 0) {
             return true;
         }
+        else {
+            if (studentSelected.groupOfStudentId !== 0) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
     }, "El estudiante " + studentSelected.name + " ya pertenece a una familia.");
 
     // end custom validation methods
 
-    $("#newGroup").validate({
-        submitHandler: function () {
+        $("#newGroup").validate({
+            submitHandler: function () {
 
-            groupDto.name = $("#js-name").val();
+                groupDto.name = $("#js-name").val();
 
-            if ($("#js-isVIP").is(":checked")) {
-                groupDto.isVIP = true;
+                if ($("#js-isVIP").is(":checked")) {
+                    groupDto.isVIP = true;
+                }
+                else {
+                    groupDto.isVIP = false;
+                }
+
+
+                // API request 
+                if (groupDto.id === 0) {
+
+                    $.ajax({
+                        url: "/Api/Groups",
+                        method: "post",
+                        data: groupDto
+                    })
+                        .done(function (data) {
+
+                            toastr.success("Familia añadida!");
+
+                            $("#js-students").empty();
+                            $("#js-name").val("");
+                            $("#js-paymentTypes").val("");
+
+                            groupDto.studentsIds = [];
+
+                        }).fail(function (e) {
+                            toastr.error("Ha ocurrido un error.");
+                        });
+                } else {
+
+
+                    $.ajax({
+                        url: "/Api/Groups",
+                        method: "put",
+                        dataType: "json",
+                        data: groupDto,
+                        success: function (response, status, xhr) {
+                            toastr.success("Familia Actualizada");
+                        },
+                        error: function (e) {
+                            toastr.error("Ha ocurrido un error");
+                        }
+
+                    });
+
+                }
             }
-            else {
-                groupDto.isVIP = false;
-            }
-
-
-            // API communications
-            $.ajax({
-                url: "/Api/Groups",
-                method: "post",
-                data: groupDto
-            })
-                .done(function (data) {
-
-                    toastr.success("Familia añadida!");
-
-                    $("#js-students").empty();
-                    $("#js-name").val("");
-                    $("#js-paymentTypes").val("");
-
-                    groupDto.studentsIds = [];
-
-                }).fail(function (e) {
-                    toastr.error("Ha ocurrido un error.");
-                });
-        }
-    });
+        });
 });
 
 
@@ -199,7 +227,7 @@ $(document).ready(function () {
 
 // Index Group Table
 
-$(document).ready(function () {
+$("#js-groupIndex").ready(function () {
     $("#js-listGroups").DataTable({
         ajax: {
             url: "/Api/Groups",
@@ -217,8 +245,8 @@ $(document).ready(function () {
     });
     $("#js-listGroups").on("click", "#js-group", function () {
         var button = $(this);
+        window.localStorage.setItem("gId", button.attr("data-group-id"));
         window.location.assign("/Groups/Details/" + button.attr("data-group-id"));
-        window.localStorage.setItem("groupID", button.attr("data-group-id"));
     });
 });
 
@@ -226,36 +254,43 @@ $(document).ready(function () {
 
 // Details Groups
 
-$(document).ready(function () {
+$("#js-Details").ready(function () {
+    var groupId = window.localStorage.getItem("gId");
 
-    
-    var groupId = window.localStorage.getItem("groupID");
+    if (window.localStorage.getItem("gId") !== "0" || window.localStorage.getItem("gId") != "0") {
+        $.ajax({
+            url: "/Api/Groups/" + groupId,
+            method: "get",
+            success: function (response) {
 
-    $.ajax({
-        url: "/Api/Groups/" + groupId,
-        method: "get",
-        success: function (response) {
+                if (response !== null) {
+                    $("js-title").text(response.name);
+                    $("#js-groupName").text(response.name);
+                    $("#js-paymentType").text(response.paymentType.type);
+                    $("#js-studentsAmount").text(response.students.length);
+                    $("#js-paymentAmount").text(response.paymentType.amount);
+                    $("#js-paymentDate").text(new Date(response.students[0].paymentDate).toUTCString());
 
-            $("js-title").text(response.name);
-            $("#js-groupName").text(response.name);
-            $("#js-paymentType").text(response.paymentType.type);
-            $("#js-studentsAmount").text(response.students.length);
-            $("#js-paymentAmount").text(response.paymentType.amount);
-            $("#js-paymentDate").text(new Date(response.students[0].paymentDate).toUTCString());
+                    $.each(response.students, function (index, student) {
+                        $("#js-studentsInGroup").append("<li class='list-group-item'>" + student.name + " " + student.lastName +
+                            "<button class='btn btn-link'><span id='js-student' data-student-id=" +
+                            student.id + " class='glyphicon glyphicon-pencil'></span></button></li>");
+                    });
+                }
 
-            $.each(response.students, function (index, student) {
-                $("#js-studentsInGroup").append("<li class='list-group-item'>" + student.name + " " + student.lastName +
-                    "<button class='btn btn-link'><span id='js-student' data-student-id=" +
-                    student.id + " class='glyphicon glyphicon-pencil'></span></button></li>");
-            });
-
-        }
-    });
+            }
+        });
+    }
 
 
     $("#js-studentsInGroup").on("click", "#js-student", function () {
         var button = $(this);
         window.location.assign("/Students/Details/" + button.attr("data-student-id"));
+    });
+
+    $("#js-modifyGroup").on("click", function () {
+        window.localStorage.setItem("gId", groupId);
+        window.location.assign("/Groups/Modify/" + groupDto.id);
     });
 });
 
@@ -264,9 +299,50 @@ $(document).ready(function () {
 
 // modify Groups
 
-$(document).ready(function () {
+$("#js-groupForm").ready(function () {
 
+    if (window.localStorage.getItem("gId") !== "0" || window.localStorage.getItem("gId") != "0") {
+        $.ajax({
+            url: "/Api/Groups/" + window.localStorage.getItem("gId"),
+            method: "get",
+            success: function (response) {
 
+                if (response !== null) {
+
+                    groupDto = response;
+
+                    studentsSelected = response.students;
+                    paymentTypeSelected = response.paymentType;
+
+                    $.each(response.students, function (index, student) {
+                        studentsId.push(student.id);
+                        groupDto.studentsIds.push(student.id);
+                    });
+
+                    $("js-groupTitle").text("Modificar Familia");
+                    $("#js-name").val(response.name);
+                    $("#js-paymentTypes").val(response.paymentType.type);
+
+                    if (response.isVIP) {
+                        $("#js-isVIP").prop("checked", true);
+                    }
+                    else {
+                        $("#js-isVIP").prop("checked", false);
+                    }
+
+                    $.each(response.students, function (index, student) {
+                        $("#js-students").append("<li class='list-group-item'>" + student.name + " " + student.lastName +
+                            "<button class='btn btn-link'><span class='glyphicon glyphicon-trash'></span ></button ></li > ");
+                    });
+                    window.localStorage.setItem("gId", 0);
+                }
+            }
+        });
+    }
+    else {
+        studentsSelected = [];
+        paymentTypeSelected = {};
+    }
 
 });
 

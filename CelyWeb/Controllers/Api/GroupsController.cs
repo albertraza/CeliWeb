@@ -49,9 +49,15 @@ namespace CelyWeb.Controllers.Api
         public IHttpActionResult GetGroup(int id) => Ok(new GroupsOfStudentsDTO().GetGroup(id));
 
         [HttpPut]
-        public IHttpActionResult Update(GroupsOfStudentsDTO group) => Ok(new GroupsOfStudentsDTO().Update(group));
+        public IHttpActionResult Update(GroupsOfStudentsDTO groupDTO)
+        {
+            if (groupDTO == null)
+                return NotFound();
+
+            return Ok(new GroupsOfStudentsDTO().Update(groupDTO));
+        }
 
         [HttpDelete]
-        public IHttpActionResult Delete(GroupsOfStudentsDTO group) => Ok(new GroupsOfStudentsDTO().Delete(group));
+        public IHttpActionResult Delete(GroupsOfStudentsDTO groupDTO) => Ok(new GroupsOfStudentsDTO().Delete(groupDTO));
     }
 }
